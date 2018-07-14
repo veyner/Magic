@@ -23,11 +23,8 @@ namespace Magic
         {
             var student = new Student();
             student.Surname = textBox1.Text;
-            if (!Directory.Exists(Properties.Settings.Default.PathToData))
-            {
-                Directory.CreateDirectory(Properties.Settings.Default.PathToData);
-            }
-            SaveData(student);
+            student.Name = textBox2.Text;
+            new SaveNLoadManager().SaveData(student);
             MessageBox.Show($"Данные {student.Surname} сохранены");
         }
 
@@ -35,31 +32,16 @@ namespace Magic
         {
         }
 
-        public void SaveData(Student student)
-        {
-            var fullSavePath = Path.Combine(Properties.Settings.Default.PathToData, student.Surname + ".json");
-
-            using (var writer = new StreamWriter(fullSavePath))
-            {
-                var json = JsonConvert.SerializeObject(student);
-                writer.Write(json);
-            }
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
-            var student = LoadSave("Hui");
+            var student = new SaveNLoadManager().LoadData(Properties.Settings.Default.PathToData);
             textBox1.Text = student.Surname;
+            textBox2.Text = student.Name;
         }
 
-        public Student LoadSave(string studensSurname)
+        private void button3_Click(object sender, EventArgs e)
         {
-            var fullDataPath = Path.Combine(Properties.Settings.Default.PathToData, studensSurname + ".json");
-            using (var reader = new StreamReader(fullDataPath))
-            {
-                var json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<Student>(json);
-            }
+            new StudentTable().Show();
         }
     }
 }
