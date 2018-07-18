@@ -28,20 +28,20 @@ namespace Magic
             MessageBox.Show($"Данные {student.Surname} сохранены");
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void button2_Click(object sender, EventArgs e)
         {
             var student = new SaveNLoadManager().LoadData(Properties.Settings.Default.PathToData);
-            textBox1.Text = student.Surname;
-            textBox2.Text = student.Name;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             new StudentTable().Show();
+        }
+
+        public void ChangeTextBoxes(Student student)
+        {
+            textBox1.Text = student.Surname;
+            textBox2.Text = student.Name;
         }
     }
 }
