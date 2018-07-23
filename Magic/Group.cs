@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    public class Student
+    public class Group
     {
-        public string Surname { get; set; }
+        public int ID { get; set; }
         public string Name { get; set; }
-        public Curriculum CurriculumInfo { get; set; }
     }
 }
