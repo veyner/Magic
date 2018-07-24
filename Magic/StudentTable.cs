@@ -34,7 +34,7 @@ namespace Magic
         {
             var studentData = LoadStudentData();
             var currentStudent = studentData[currentStudentNumber];
-            var currentStudentCard = new Form1();
+            var currentStudentCard = new StudentCard();
             currentStudentCard.ChangeTextBoxes(currentStudent);
             currentStudentCard.Show();
         }

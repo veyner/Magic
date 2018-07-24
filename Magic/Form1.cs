@@ -8,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Controls;
 using Newtonsoft.Json;
 
 namespace Magic
 {
-    public partial class Form1 : Form
+    public partial class StudentCard : Form
     {
-        public Form1()
+        public StudentCard()
         {
             InitializeComponent();
         }
@@ -23,8 +24,8 @@ namespace Magic
         {
             var student = new Student();
 
-            student.Surname = textBox1.Text;
-            student.Name = textBox2.Text;
+            student.Surname = surNameTextBox.Text;
+            student.Name = nameTextBox.Text;
 
             new SaveNLoadManager().SaveData(student);
             MessageBox.Show($"Данные {student.Surname} сохранены");
@@ -42,13 +43,12 @@ namespace Magic
 
         public void ChangeTextBoxes(Student student)
         {
-            textBox1.Text = student.Surname;
-            textBox2.Text = student.Name;
+            surNameTextBox.Text = student.Surname;
+            nameTextBox.Text = student.Name;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            new Form1().CreateFacultyComboBox();
         }
 
         private void CreateFacultyComboBox()
@@ -59,7 +59,17 @@ namespace Magic
             {
                 faculties.Add(curriculumInfo.Faculties[i].Name);
             }
-            FacultyComboBox.DataSource = faculties;
+            foreach (var faculty in faculties)
+            {
+                //ComboBoxItem item = new ComboBoxItem();
+                //item.Text = faculty;
+                facultyComboBox.Items.Add(faculty);
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            CreateFacultyComboBox();
         }
 
         // сделать отдельный файл с инфой по факультетам и т.д.; сделать комбобоксы с добавленной институтской инфой;
