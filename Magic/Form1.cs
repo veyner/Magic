@@ -24,8 +24,13 @@ namespace Magic
         {
             var student = new Student();
 
-            student.Surname = surNameTextBox.Text;
+            student.Surname = surnameTextBox.Text;
             student.Name = nameTextBox.Text;
+            student.MiddleName = middlenameTextBox.Text;
+            student.City = cityTextBox.Text;
+            student.Street = streetTextBox.Text;
+            student.TelefonNumber = int.Parse(telefonTextBox.Text);
+            student.Email = emailTextBox.Text;
 
             new SaveNLoadManager().SaveData(student);
             MessageBox.Show($"Данные {student.Surname} сохранены");
@@ -43,33 +48,43 @@ namespace Magic
 
         public void ChangeTextBoxes(Student student)
         {
-            surNameTextBox.Text = student.Surname;
+            surnameTextBox.Text = student.Surname;
             nameTextBox.Text = student.Name;
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void CreateFacultyComboBox()
+        private void LoadDataToComboBoxes()
         {
             var curriculumInfo = new Curriculum().LoadCurruculumData();
-            var faculties = new List<string>();
-            for (var i = 0; i < curriculumInfo.Faculties.Count; i++)
-            {
-                faculties.Add(curriculumInfo.Faculties[i].Name);
-            }
-            foreach (var faculty in faculties)
-            {
-                //ComboBoxItem item = new ComboBoxItem();
-                //item.Text = faculty;
-                facultyComboBox.Items.Add(faculty);
-            }
+
+            facultyComboBox.DataSource = curriculumInfo.Faculties;
+            facultyComboBox.DisplayMember = "Name";
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            CreateFacultyComboBox();
+            //new Curriculum().SaveData();
+            LoadDataToComboBoxes();
+        }
+
+        private void facultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
+            specialityComboBox.DataSource = currentFaculty.Specialities;
+            specialityComboBox.DisplayMember = "Name";
+        }
+
+        private void specialityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
+            courceComboBox.DataSource = currentSpeciality.Cources;
+            courceComboBox.DisplayMember = "Number";
+        }
+
+        private void courceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var currentCource = (Cource)courceComboBox.SelectedItem;
+            groupComboBox.DataSource = currentCource.Groups;
+            groupComboBox.DisplayMember = "Name";
         }
 
         // сделать отдельный файл с инфой по факультетам и т.д.; сделать комбобоксы с добавленной институтской инфой;

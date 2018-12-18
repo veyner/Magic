@@ -28,51 +28,57 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.surNameTextBox = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.Фамилия = new System.Windows.Forms.Label();
+            this.surnameTextBox = new System.Windows.Forms.TextBox();
+            this.saveStudentCardButton = new System.Windows.Forms.Button();
+            this.surnameLabel = new System.Windows.Forms.Label();
             this.nameTextBox = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.nameLabel = new System.Windows.Forms.Label();
+            this.showStudentListbutton = new System.Windows.Forms.Button();
             this.facultyComboBox = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.MiddleName = new System.Windows.Forms.Label();
-            this.middleNameTextBox = new System.Windows.Forms.TextBox();
+            this.facultyLabel = new System.Windows.Forms.Label();
+            this.middlenameLabel = new System.Windows.Forms.Label();
+            this.middlenameTextBox = new System.Windows.Forms.TextBox();
             this.cityTextBox = new System.Windows.Forms.TextBox();
             this.streetTextBox = new System.Windows.Forms.TextBox();
-            this.City = new System.Windows.Forms.Label();
-            this.Street = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.cityLabel = new System.Windows.Forms.Label();
+            this.adressLabel = new System.Windows.Forms.Label();
+            this.emailTextBox = new System.Windows.Forms.TextBox();
+            this.telefonTextBox = new System.Windows.Forms.TextBox();
+            this.emailLabel = new System.Windows.Forms.Label();
+            this.telefonNumberLabel = new System.Windows.Forms.Label();
+            this.specialityComboBox = new System.Windows.Forms.ComboBox();
+            this.courceComboBox = new System.Windows.Forms.ComboBox();
+            this.groupComboBox = new System.Windows.Forms.ComboBox();
+            this.groupLabel = new System.Windows.Forms.Label();
+            this.specialityLabel = new System.Windows.Forms.Label();
+            this.courceLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // surNameTextBox
+            // surnameTextBox
             // 
-            this.surNameTextBox.Location = new System.Drawing.Point(15, 22);
-            this.surNameTextBox.Name = "surNameTextBox";
-            this.surNameTextBox.Size = new System.Drawing.Size(169, 20);
-            this.surNameTextBox.TabIndex = 0;
+            this.surnameTextBox.Location = new System.Drawing.Point(15, 22);
+            this.surnameTextBox.Name = "surnameTextBox";
+            this.surnameTextBox.Size = new System.Drawing.Size(169, 20);
+            this.surnameTextBox.TabIndex = 0;
             // 
-            // button1
+            // saveStudentCardButton
             // 
-            this.button1.Location = new System.Drawing.Point(541, 389);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(151, 23);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Сохранить данные";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.saveStudentCardButton.Location = new System.Drawing.Point(541, 389);
+            this.saveStudentCardButton.Name = "saveStudentCardButton";
+            this.saveStudentCardButton.Size = new System.Drawing.Size(151, 23);
+            this.saveStudentCardButton.TabIndex = 1;
+            this.saveStudentCardButton.Text = "Сохранить данные";
+            this.saveStudentCardButton.UseVisualStyleBackColor = true;
+            this.saveStudentCardButton.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Фамилия
+            // surnameLabel
             // 
-            this.Фамилия.AutoSize = true;
-            this.Фамилия.Location = new System.Drawing.Point(12, 6);
-            this.Фамилия.Name = "Фамилия";
-            this.Фамилия.Size = new System.Drawing.Size(56, 13);
-            this.Фамилия.TabIndex = 2;
-            this.Фамилия.Text = "Фамилия";
+            this.surnameLabel.AutoSize = true;
+            this.surnameLabel.Location = new System.Drawing.Point(12, 6);
+            this.surnameLabel.Name = "surnameLabel";
+            this.surnameLabel.Size = new System.Drawing.Size(56, 13);
+            this.surnameLabel.TabIndex = 2;
+            this.surnameLabel.Text = "Фамилия";
             // 
             // nameTextBox
             // 
@@ -81,24 +87,24 @@
             this.nameTextBox.Size = new System.Drawing.Size(169, 20);
             this.nameTextBox.TabIndex = 4;
             // 
-            // label1
+            // nameLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(29, 13);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Имя";
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(12, 55);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(29, 13);
+            this.nameLabel.TabIndex = 5;
+            this.nameLabel.Text = "Имя";
             // 
-            // button3
+            // showStudentListbutton
             // 
-            this.button3.Location = new System.Drawing.Point(489, 418);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(299, 29);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Список студентов";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.showStudentListbutton.Location = new System.Drawing.Point(489, 418);
+            this.showStudentListbutton.Name = "showStudentListbutton";
+            this.showStudentListbutton.Size = new System.Drawing.Size(299, 29);
+            this.showStudentListbutton.TabIndex = 6;
+            this.showStudentListbutton.Text = "Список студентов";
+            this.showStudentListbutton.UseVisualStyleBackColor = true;
+            this.showStudentListbutton.Click += new System.EventHandler(this.button3_Click);
             // 
             // facultyComboBox
             // 
@@ -107,120 +113,179 @@
             this.facultyComboBox.Name = "facultyComboBox";
             this.facultyComboBox.Size = new System.Drawing.Size(121, 21);
             this.facultyComboBox.TabIndex = 7;
-            this.facultyComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.facultyComboBox.SelectedIndexChanged += new System.EventHandler(this.facultyComboBox_SelectedIndexChanged);
             // 
-            // label2
+            // facultyLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(275, 9);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Факультет";
+            this.facultyLabel.AutoSize = true;
+            this.facultyLabel.Location = new System.Drawing.Point(275, 9);
+            this.facultyLabel.Name = "facultyLabel";
+            this.facultyLabel.Size = new System.Drawing.Size(63, 13);
+            this.facultyLabel.TabIndex = 8;
+            this.facultyLabel.Text = "Факультет";
             // 
-            // MiddleName
+            // middlenameLabel
             // 
-            this.MiddleName.AutoSize = true;
-            this.MiddleName.Location = new System.Drawing.Point(12, 104);
-            this.MiddleName.Name = "MiddleName";
-            this.MiddleName.Size = new System.Drawing.Size(54, 13);
-            this.MiddleName.TabIndex = 9;
-            this.MiddleName.Text = "Отчество";
+            this.middlenameLabel.AutoSize = true;
+            this.middlenameLabel.Location = new System.Drawing.Point(12, 104);
+            this.middlenameLabel.Name = "middlenameLabel";
+            this.middlenameLabel.Size = new System.Drawing.Size(54, 13);
+            this.middlenameLabel.TabIndex = 9;
+            this.middlenameLabel.Text = "Отчество";
             // 
-            // middleNameTextBox
+            // middlenameTextBox
             // 
-            this.middleNameTextBox.Location = new System.Drawing.Point(15, 120);
-            this.middleNameTextBox.Name = "middleNameTextBox";
-            this.middleNameTextBox.Size = new System.Drawing.Size(169, 20);
-            this.middleNameTextBox.TabIndex = 10;
+            this.middlenameTextBox.Location = new System.Drawing.Point(15, 120);
+            this.middlenameTextBox.Name = "middlenameTextBox";
+            this.middlenameTextBox.Size = new System.Drawing.Size(169, 20);
+            this.middlenameTextBox.TabIndex = 10;
             // 
             // cityTextBox
             // 
             this.cityTextBox.Location = new System.Drawing.Point(15, 170);
             this.cityTextBox.Name = "cityTextBox";
-            this.cityTextBox.Size = new System.Drawing.Size(100, 20);
+            this.cityTextBox.Size = new System.Drawing.Size(169, 20);
             this.cityTextBox.TabIndex = 11;
             // 
             // streetTextBox
             // 
             this.streetTextBox.Location = new System.Drawing.Point(15, 218);
             this.streetTextBox.Name = "streetTextBox";
-            this.streetTextBox.Size = new System.Drawing.Size(100, 20);
+            this.streetTextBox.Size = new System.Drawing.Size(169, 20);
             this.streetTextBox.TabIndex = 12;
             // 
-            // City
+            // cityLabel
             // 
-            this.City.AutoSize = true;
-            this.City.Location = new System.Drawing.Point(12, 154);
-            this.City.Name = "City";
-            this.City.Size = new System.Drawing.Size(37, 13);
-            this.City.TabIndex = 13;
-            this.City.Text = "Город";
+            this.cityLabel.AutoSize = true;
+            this.cityLabel.Location = new System.Drawing.Point(12, 154);
+            this.cityLabel.Name = "cityLabel";
+            this.cityLabel.Size = new System.Drawing.Size(37, 13);
+            this.cityLabel.TabIndex = 13;
+            this.cityLabel.Text = "Город";
             // 
-            // Street
+            // adressLabel
             // 
-            this.Street.AutoSize = true;
-            this.Street.Location = new System.Drawing.Point(12, 202);
-            this.Street.Name = "Street";
-            this.Street.Size = new System.Drawing.Size(39, 13);
-            this.Street.TabIndex = 14;
-            this.Street.Text = "Улица";
+            this.adressLabel.AutoSize = true;
+            this.adressLabel.Location = new System.Drawing.Point(12, 202);
+            this.adressLabel.Name = "adressLabel";
+            this.adressLabel.Size = new System.Drawing.Size(38, 13);
+            this.adressLabel.TabIndex = 14;
+            this.adressLabel.Text = "Адрес";
             // 
-            // textBox1
+            // emailTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(15, 314);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 15;
+            this.emailTextBox.Location = new System.Drawing.Point(15, 314);
+            this.emailTextBox.Name = "emailTextBox";
+            this.emailTextBox.Size = new System.Drawing.Size(169, 20);
+            this.emailTextBox.TabIndex = 15;
             // 
-            // textBox2
+            // telefonTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(15, 266);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 16;
+            this.telefonTextBox.Location = new System.Drawing.Point(15, 266);
+            this.telefonTextBox.Name = "telefonTextBox";
+            this.telefonTextBox.Size = new System.Drawing.Size(169, 20);
+            this.telefonTextBox.TabIndex = 16;
             // 
-            // label3
+            // emailLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(14, 298);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 17;
-            this.label3.Text = "label3";
+            this.emailLabel.AutoSize = true;
+            this.emailLabel.Location = new System.Drawing.Point(14, 298);
+            this.emailLabel.Name = "emailLabel";
+            this.emailLabel.Size = new System.Drawing.Size(139, 13);
+            this.emailLabel.TabIndex = 17;
+            this.emailLabel.Text = "Адрес электронной почты";
             // 
-            // label4
+            // telefonNumberLabel
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 250);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "label4";
+            this.telefonNumberLabel.AutoSize = true;
+            this.telefonNumberLabel.Location = new System.Drawing.Point(12, 250);
+            this.telefonNumberLabel.Name = "telefonNumberLabel";
+            this.telefonNumberLabel.Size = new System.Drawing.Size(155, 13);
+            this.telefonNumberLabel.TabIndex = 18;
+            this.telefonNumberLabel.Text = "Контактный номер телефона";
+            // 
+            // specialityComboBox
+            // 
+            this.specialityComboBox.FormattingEnabled = true;
+            this.specialityComboBox.Location = new System.Drawing.Point(278, 70);
+            this.specialityComboBox.Name = "specialityComboBox";
+            this.specialityComboBox.Size = new System.Drawing.Size(121, 21);
+            this.specialityComboBox.TabIndex = 19;
+            this.specialityComboBox.SelectedIndexChanged += new System.EventHandler(this.specialityComboBox_SelectedIndexChanged);
+            // 
+            // courceComboBox
+            // 
+            this.courceComboBox.FormattingEnabled = true;
+            this.courceComboBox.Location = new System.Drawing.Point(278, 119);
+            this.courceComboBox.Name = "courceComboBox";
+            this.courceComboBox.Size = new System.Drawing.Size(121, 21);
+            this.courceComboBox.TabIndex = 20;
+            this.courceComboBox.SelectedIndexChanged += new System.EventHandler(this.courceComboBox_SelectedIndexChanged);
+            // 
+            // groupComboBox
+            // 
+            this.groupComboBox.FormattingEnabled = true;
+            this.groupComboBox.Location = new System.Drawing.Point(278, 169);
+            this.groupComboBox.Name = "groupComboBox";
+            this.groupComboBox.Size = new System.Drawing.Size(121, 21);
+            this.groupComboBox.TabIndex = 21;
+            // 
+            // groupLabel
+            // 
+            this.groupLabel.AutoSize = true;
+            this.groupLabel.Location = new System.Drawing.Point(275, 153);
+            this.groupLabel.Name = "groupLabel";
+            this.groupLabel.Size = new System.Drawing.Size(42, 13);
+            this.groupLabel.TabIndex = 22;
+            this.groupLabel.Text = "Группа";
+            // 
+            // specialityLabel
+            // 
+            this.specialityLabel.AutoSize = true;
+            this.specialityLabel.Location = new System.Drawing.Point(275, 55);
+            this.specialityLabel.Name = "specialityLabel";
+            this.specialityLabel.Size = new System.Drawing.Size(85, 13);
+            this.specialityLabel.TabIndex = 23;
+            this.specialityLabel.Text = "Специальность";
+            // 
+            // courceLabel
+            // 
+            this.courceLabel.AutoSize = true;
+            this.courceLabel.Location = new System.Drawing.Point(275, 104);
+            this.courceLabel.Name = "courceLabel";
+            this.courceLabel.Size = new System.Drawing.Size(31, 13);
+            this.courceLabel.TabIndex = 24;
+            this.courceLabel.Text = "Курс";
             // 
             // StudentCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.Street);
-            this.Controls.Add(this.City);
+            this.Controls.Add(this.courceLabel);
+            this.Controls.Add(this.specialityLabel);
+            this.Controls.Add(this.groupLabel);
+            this.Controls.Add(this.groupComboBox);
+            this.Controls.Add(this.courceComboBox);
+            this.Controls.Add(this.specialityComboBox);
+            this.Controls.Add(this.telefonNumberLabel);
+            this.Controls.Add(this.emailLabel);
+            this.Controls.Add(this.telefonTextBox);
+            this.Controls.Add(this.emailTextBox);
+            this.Controls.Add(this.adressLabel);
+            this.Controls.Add(this.cityLabel);
             this.Controls.Add(this.streetTextBox);
             this.Controls.Add(this.cityTextBox);
-            this.Controls.Add(this.middleNameTextBox);
-            this.Controls.Add(this.MiddleName);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.middlenameTextBox);
+            this.Controls.Add(this.middlenameLabel);
+            this.Controls.Add(this.facultyLabel);
             this.Controls.Add(this.facultyComboBox);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.showStudentListbutton);
+            this.Controls.Add(this.nameLabel);
             this.Controls.Add(this.nameTextBox);
-            this.Controls.Add(this.Фамилия);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.surNameTextBox);
+            this.Controls.Add(this.surnameLabel);
+            this.Controls.Add(this.saveStudentCardButton);
+            this.Controls.Add(this.surnameTextBox);
             this.Name = "StudentCard";
             this.Text = "Карточка студента";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -231,24 +296,30 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox surNameTextBox;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Label Фамилия;
+        private System.Windows.Forms.TextBox surnameTextBox;
+        private System.Windows.Forms.Button saveStudentCardButton;
+        private System.Windows.Forms.Label surnameLabel;
         private System.Windows.Forms.TextBox nameTextBox;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label nameLabel;
+        private System.Windows.Forms.Button showStudentListbutton;
         private System.Windows.Forms.ComboBox facultyComboBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label MiddleName;
-        private System.Windows.Forms.TextBox middleNameTextBox;
+        private System.Windows.Forms.Label facultyLabel;
+        private System.Windows.Forms.Label middlenameLabel;
+        private System.Windows.Forms.TextBox middlenameTextBox;
         private System.Windows.Forms.TextBox cityTextBox;
         private System.Windows.Forms.TextBox streetTextBox;
-        private System.Windows.Forms.Label City;
-        private System.Windows.Forms.Label Street;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label cityLabel;
+        private System.Windows.Forms.Label adressLabel;
+        private System.Windows.Forms.TextBox emailTextBox;
+        private System.Windows.Forms.TextBox telefonTextBox;
+        private System.Windows.Forms.Label emailLabel;
+        private System.Windows.Forms.Label telefonNumberLabel;
+        private System.Windows.Forms.ComboBox specialityComboBox;
+        private System.Windows.Forms.ComboBox courceComboBox;
+        private System.Windows.Forms.ComboBox groupComboBox;
+        private System.Windows.Forms.Label groupLabel;
+        private System.Windows.Forms.Label specialityLabel;
+        private System.Windows.Forms.Label courceLabel;
     }
 }
 

@@ -11,33 +11,33 @@ namespace Magic
     public class Curriculum
     {
         public List<Faculty> Faculties { get; set; }
-        public List<Group> Groups { get; set; }
-        /*
-        public string Speciality { get; set; }
-        public string Cource { get; set; }
 
-        */
-
-        /*public void SaveData()
+        /*public void SaveCurriculumData()
         {
             var curriculumInfo = new Curriculum();
-            var faculties = new List<Faculty>();
-            faculties.Add(new Faculty());
-            faculties[0].ID = 1;
-            faculties[0].Name = "Psix-ped";
-            faculties.Add(new Faculty());
-            faculties[1] = new Faculty();
-            faculties[1].ID = 2;
-            faculties[1].Name = "Ist-Fil";
-            var groups = new List<Group>();
-            groups.Add(new Group());
-            groups[0].ID = 1;
-            groups[0].Name = "PM2P";
-            groups.Add(new Group());
-            groups[1].ID = 2;
-            groups[1].Name = "PM2K";
-            curriculumInfo.Faculties = faculties;
-            curriculumInfo.Groups = groups;
+            curriculumInfo.Faculties = new List<Faculty>();
+            curriculumInfo.Faculties.Add(new Faculty());
+            var fac1 = curriculumInfo.Faculties[0];
+            fac1.ID = 1;
+            fac1.Name = "Психолого-педагогический";
+            fac1.Specialities = new List<Speciality>();
+            fac1.Specialities.Add(new Speciality());
+            var spec1 = fac1.Specialities[0];
+            spec1.Name = "Учитель информатики";
+            spec1.ID = 1;
+            spec1.Cources = new List<Cource>();
+            spec1.Cources.Add(new Cource());
+            var cource1 = spec1.Cources[0];
+            cource1.Number = 1;
+            cource1.Groups = new List<Group>();
+            cource1.Groups.Add(new Group());
+            var group1 = cource1.Groups[0];
+            group1.ID = 1;
+            group1.Name = "ПИ1";
+            cource1.Groups.Add(new Group());
+            var group2 = cource1.Groups[1];
+            group2.ID = 2;
+            group2.Name = "ПрИ1";
 
             var fullSavePath = Path.Combine(Properties.Settings.Default.PathToData, "CurriculumInfo.json");
 
@@ -46,8 +46,7 @@ namespace Magic
                 var json = JsonConvert.SerializeObject(curriculumInfo);
                 writer.Write(json);
             }
-        }
-        */
+        }*/
 
         public Curriculum LoadCurruculumData()
         {

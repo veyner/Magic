@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    public class Faculty
+    public class Speciality
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Speciality> Specialities { get; set; }
+        public List<Cource> Cources { get; set; }
     }
 }

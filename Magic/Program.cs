@@ -14,7 +14,7 @@ namespace Magic
         [STAThread]
         private static void Main()
         {
-            //new Curriculum().SaveData();
+            //new Curriculum().SaveCurriculumData();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new StudentCard());

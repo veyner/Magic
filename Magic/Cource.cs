@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Magic
 {
-    public class ComboBoxItem
+    public class Cource
     {
-        public string Text { get; set; }
+        public int Number { get; set; }
+        public List<Group> Groups { get; set; }
     }
 }
