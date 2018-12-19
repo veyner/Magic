@@ -12,7 +12,7 @@ namespace Magic
     {
         public void SaveData(Student student)
         {
-            var fullSavePath = Path.Combine(Properties.Settings.Default.PathToData, student.Surname + ".json");
+            var fullSavePath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, student.Surname + ".json");
 
             using (var writer = new StreamWriter(fullSavePath))
             {
@@ -23,7 +23,7 @@ namespace Magic
 
         public Student LoadData(string studentsData)
         {
-            var fullDataPath = Path.Combine(Properties.Settings.Default.PathToData, studentsData);
+            var fullDataPath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, studentsData);
             using (var reader = new StreamReader(fullDataPath))
             {
                 var json = reader.ReadToEnd();
@@ -31,15 +31,15 @@ namespace Magic
             }
         }
 
-        public List<Student> GetStudents(string PathToData)
+        public List<Student> GetStudents(string PathToStudentInfo)
         {
-            if (!Directory.Exists(PathToData))
+            if (!Directory.Exists(PathToStudentInfo))
             {
-                Directory.CreateDirectory(PathToData);
+                Directory.CreateDirectory(PathToStudentInfo);
             }
 
             var studentList = new List<Student>();
-            var studentFiles = Directory.GetFiles(PathToData);
+            var studentFiles = Directory.GetFiles(PathToStudentInfo);
             foreach (var student in studentFiles)
             {
                 var i = LoadData(Path.GetFileName(student));

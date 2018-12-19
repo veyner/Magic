@@ -34,5 +34,17 @@ namespace Magic.Properties {
                 this["PathToData"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Students")]
+        public string PathToStudentInfo {
+            get {
+                return ((string)(this["PathToStudentInfo"]));
+            }
+            set {
+                this["PathToStudentInfo"] = value;
+            }
+        }
     }
 }

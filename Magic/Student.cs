@@ -13,7 +13,7 @@ namespace Magic
         public string MiddleName { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
-        public int TelefonNumber { get; set; }
+        public long TelefonNumber { get; set; }
         public string Email { get; set; }
 
         public int FacultyID { get; set; }

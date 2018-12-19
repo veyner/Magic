@@ -63,13 +63,13 @@
             // 
             // saveStudentCardButton
             // 
-            this.saveStudentCardButton.Location = new System.Drawing.Point(541, 389);
+            this.saveStudentCardButton.Location = new System.Drawing.Point(489, 389);
             this.saveStudentCardButton.Name = "saveStudentCardButton";
             this.saveStudentCardButton.Size = new System.Drawing.Size(151, 23);
             this.saveStudentCardButton.TabIndex = 1;
             this.saveStudentCardButton.Text = "Сохранить данные";
             this.saveStudentCardButton.UseVisualStyleBackColor = true;
-            this.saveStudentCardButton.Click += new System.EventHandler(this.button1_Click);
+            this.saveStudentCardButton.Click += new System.EventHandler(this.saveStudentCardButton_Click);
             // 
             // surnameLabel
             // 
@@ -104,7 +104,7 @@
             this.showStudentListbutton.TabIndex = 6;
             this.showStudentListbutton.Text = "Список студентов";
             this.showStudentListbutton.UseVisualStyleBackColor = true;
-            this.showStudentListbutton.Click += new System.EventHandler(this.button3_Click);
+            this.showStudentListbutton.Click += new System.EventHandler(this.showStudentListbutton_Click);
             // 
             // facultyComboBox
             // 

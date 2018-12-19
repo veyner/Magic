@@ -25,8 +25,8 @@ namespace Magic
 
         private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            var adress = dataGridView1.CurrentCellAddress;
-            var currentStudentNumber = adress.Y;
+            var address = dataGridView1.CurrentCellAddress;
+            var currentStudentNumber = address.Y;
             LoadClickedStudent(currentStudentNumber);
         }
 
@@ -41,7 +41,7 @@ namespace Magic
 
         private List<Student> LoadStudentData()
         {
-            return new SaveNLoadManager().GetStudents(Properties.Settings.Default.PathToData);
+            return new SaveNLoadManager().GetStudents(Properties.Settings.Default.PathToStudentInfo);
         }
     }
 }
