@@ -18,12 +18,7 @@ namespace Magic
         public StudentCard()
         {
             InitializeComponent();
-            LoadDataToComboBoxes();
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            var student = new SaveNLoadManager().LoadData(Properties.Settings.Default.PathToData);
+            new ComboBoxManager().LoadInfoToFacultyCombobox(facultyComboBox);
         }
 
         public void ChangeTextBoxes(Student student)
@@ -42,19 +37,11 @@ namespace Magic
             specialityComboBox.ValueMember = nameof(Speciality.ID);
             specialityComboBox.SelectedValue = student.SpecialityID;
 
-            courceComboBox.ValueMember = nameof(Cource.Number);
-            courceComboBox.SelectedValue = student.Cource;
+            courceComboBox.ValueMember = nameof(Cource.ID);
+            courceComboBox.SelectedValue = student.CourceID;
 
             groupComboBox.ValueMember = nameof(Group.ID);
             groupComboBox.SelectedValue = student.GroupID;
-        }
-
-        private void LoadDataToComboBoxes()
-        {
-            var curriculumInfo = new Curriculum().LoadCurruculumData();
-
-            facultyComboBox.DataSource = curriculumInfo.Faculties;
-            facultyComboBox.DisplayMember = "Name";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -63,23 +50,17 @@ namespace Magic
 
         private void facultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
-            specialityComboBox.DataSource = currentFaculty.Specialities;
-            specialityComboBox.DisplayMember = "Name";
+            new ComboBoxManager().LoadInfoToSpecialityComboBox(specialityComboBox, facultyComboBox);
         }
 
         private void specialityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
-            courceComboBox.DataSource = currentSpeciality.Cources;
-            courceComboBox.DisplayMember = "Number";
+            new ComboBoxManager().LoadInfoToCourceComboBox(courceComboBox, specialityComboBox);
         }
 
         private void courceComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var currentCource = (Cource)courceComboBox.SelectedItem;
-            groupComboBox.DataSource = currentCource.Groups;
-            groupComboBox.DisplayMember = "Name";
+            new ComboBoxManager().LoadInfoToGroupComboBox(groupComboBox, courceComboBox);
         }
 
         private void saveStudentCardButton_Click(object sender, EventArgs e)
@@ -99,7 +80,7 @@ namespace Magic
             student.Email = emailTextBox.Text;
             student.FacultyID = currentFaculty.ID;
             student.SpecialityID = currentSpeciality.ID;
-            student.Cource = currentCource.Number;
+            student.CourceID = currentCource.ID;
             student.GroupID = currentGroup.ID;
             new SaveNLoadManager().SaveData(student);
             MessageBox.Show($"Данные {student.Surname} сохранены");
@@ -109,8 +90,5 @@ namespace Magic
         {
             new StudentTable().Show();
         }
-
-        // ++сделать отдельный файл с инфой по факультетам и т.д.; сделать комбобоксы с добавленной институтской инфой;
-        // ++закрепление curriculum info за студентом в виде ID. сохранение каждой карточки в отдельный файл json.
     }
 }

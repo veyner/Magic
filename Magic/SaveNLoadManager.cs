@@ -47,5 +47,10 @@ namespace Magic
             }
             return studentList;
         }
+
+        public List<Student> LoadStudentData()
+        {
+            return GetStudents(Properties.Settings.Default.PathToStudentInfo);
+        }
     }
 }

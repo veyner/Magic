@@ -15,33 +15,51 @@ namespace Magic
         public StudentTable()
         {
             InitializeComponent();
+            new ComboBoxManager().LoadInfoToFacultyCombobox(facultyComboBox);
         }
 
         private void StudentTable_Load(object sender, EventArgs e)
         {
-            var studentData = LoadStudentData();
-            dataGridView1.DataSource = studentData;
-        }
-
-        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            var address = dataGridView1.CurrentCellAddress;
-            var currentStudentNumber = address.Y;
-            LoadClickedStudent(currentStudentNumber);
+            new TableManager().LoadFullInfo(studentListDataGridView);
         }
 
         private void LoadClickedStudent(int currentStudentNumber)
         {
-            var studentData = LoadStudentData();
+            var studentData = new SaveNLoadManager().LoadStudentData();
             var currentStudent = studentData[currentStudentNumber];
             var currentStudentCard = new StudentCard();
             currentStudentCard.ChangeTextBoxes(currentStudent);
             currentStudentCard.Show();
         }
 
-        private List<Student> LoadStudentData()
+        private void studentListDataGridView_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            return new SaveNLoadManager().GetStudents(Properties.Settings.Default.PathToStudentInfo);
+            var address = studentListDataGridView.CurrentCellAddress;
+            var currentStudentNumber = address.Y;
+            LoadClickedStudent(currentStudentNumber);
+        }
+
+        private void facultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            new ComboBoxManager().LoadInfoToSpecialityComboBox(specialityComboBox, facultyComboBox);
+            new TableManager().FacultyFilter(facultyComboBox, studentListDataGridView);
+        }
+
+        private void specialityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            new ComboBoxManager().LoadInfoToCourceComboBox(courceComboBox, specialityComboBox);
+            new TableManager().SpecialityFilter(facultyComboBox, specialityComboBox, studentListDataGridView);
+        }
+
+        private void courceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            new ComboBoxManager().LoadInfoToGroupComboBox(groupComboBox, courceComboBox);
+            new TableManager().CourceFilter(facultyComboBox, specialityComboBox, courceComboBox, studentListDataGridView);
+        }
+
+        private void groupComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            new TableManager().GroupFilter(facultyComboBox, specialityComboBox, courceComboBox, groupComboBox, studentListDataGridView);
         }
     }
 }

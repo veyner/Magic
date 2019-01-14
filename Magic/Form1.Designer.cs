@@ -63,9 +63,9 @@
             // 
             // saveStudentCardButton
             // 
-            this.saveStudentCardButton.Location = new System.Drawing.Point(489, 389);
+            this.saveStudentCardButton.Location = new System.Drawing.Point(15, 350);
             this.saveStudentCardButton.Name = "saveStudentCardButton";
-            this.saveStudentCardButton.Size = new System.Drawing.Size(151, 23);
+            this.saveStudentCardButton.Size = new System.Drawing.Size(341, 28);
             this.saveStudentCardButton.TabIndex = 1;
             this.saveStudentCardButton.Text = "Сохранить данные";
             this.saveStudentCardButton.UseVisualStyleBackColor = true;
@@ -98,9 +98,9 @@
             // 
             // showStudentListbutton
             // 
-            this.showStudentListbutton.Location = new System.Drawing.Point(489, 418);
+            this.showStudentListbutton.Location = new System.Drawing.Point(15, 394);
             this.showStudentListbutton.Name = "showStudentListbutton";
-            this.showStudentListbutton.Size = new System.Drawing.Size(299, 29);
+            this.showStudentListbutton.Size = new System.Drawing.Size(341, 29);
             this.showStudentListbutton.TabIndex = 6;
             this.showStudentListbutton.Text = "Список студентов";
             this.showStudentListbutton.UseVisualStyleBackColor = true;
@@ -109,7 +109,7 @@
             // facultyComboBox
             // 
             this.facultyComboBox.FormattingEnabled = true;
-            this.facultyComboBox.Location = new System.Drawing.Point(278, 22);
+            this.facultyComboBox.Location = new System.Drawing.Point(193, 22);
             this.facultyComboBox.Name = "facultyComboBox";
             this.facultyComboBox.Size = new System.Drawing.Size(121, 21);
             this.facultyComboBox.TabIndex = 7;
@@ -118,7 +118,7 @@
             // facultyLabel
             // 
             this.facultyLabel.AutoSize = true;
-            this.facultyLabel.Location = new System.Drawing.Point(275, 9);
+            this.facultyLabel.Location = new System.Drawing.Point(190, 9);
             this.facultyLabel.Name = "facultyLabel";
             this.facultyLabel.Size = new System.Drawing.Size(63, 13);
             this.facultyLabel.TabIndex = 8;
@@ -207,7 +207,7 @@
             // specialityComboBox
             // 
             this.specialityComboBox.FormattingEnabled = true;
-            this.specialityComboBox.Location = new System.Drawing.Point(278, 70);
+            this.specialityComboBox.Location = new System.Drawing.Point(193, 70);
             this.specialityComboBox.Name = "specialityComboBox";
             this.specialityComboBox.Size = new System.Drawing.Size(121, 21);
             this.specialityComboBox.TabIndex = 19;
@@ -216,7 +216,7 @@
             // courceComboBox
             // 
             this.courceComboBox.FormattingEnabled = true;
-            this.courceComboBox.Location = new System.Drawing.Point(278, 119);
+            this.courceComboBox.Location = new System.Drawing.Point(193, 119);
             this.courceComboBox.Name = "courceComboBox";
             this.courceComboBox.Size = new System.Drawing.Size(121, 21);
             this.courceComboBox.TabIndex = 20;
@@ -225,7 +225,7 @@
             // groupComboBox
             // 
             this.groupComboBox.FormattingEnabled = true;
-            this.groupComboBox.Location = new System.Drawing.Point(278, 169);
+            this.groupComboBox.Location = new System.Drawing.Point(193, 169);
             this.groupComboBox.Name = "groupComboBox";
             this.groupComboBox.Size = new System.Drawing.Size(121, 21);
             this.groupComboBox.TabIndex = 21;
@@ -233,7 +233,7 @@
             // groupLabel
             // 
             this.groupLabel.AutoSize = true;
-            this.groupLabel.Location = new System.Drawing.Point(275, 153);
+            this.groupLabel.Location = new System.Drawing.Point(190, 153);
             this.groupLabel.Name = "groupLabel";
             this.groupLabel.Size = new System.Drawing.Size(42, 13);
             this.groupLabel.TabIndex = 22;
@@ -242,7 +242,7 @@
             // specialityLabel
             // 
             this.specialityLabel.AutoSize = true;
-            this.specialityLabel.Location = new System.Drawing.Point(275, 55);
+            this.specialityLabel.Location = new System.Drawing.Point(190, 55);
             this.specialityLabel.Name = "specialityLabel";
             this.specialityLabel.Size = new System.Drawing.Size(85, 13);
             this.specialityLabel.TabIndex = 23;
@@ -251,7 +251,7 @@
             // courceLabel
             // 
             this.courceLabel.AutoSize = true;
-            this.courceLabel.Location = new System.Drawing.Point(275, 104);
+            this.courceLabel.Location = new System.Drawing.Point(190, 104);
             this.courceLabel.Name = "courceLabel";
             this.courceLabel.Size = new System.Drawing.Size(31, 13);
             this.courceLabel.TabIndex = 24;
@@ -261,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(368, 435);
             this.Controls.Add(this.courceLabel);
             this.Controls.Add(this.specialityLabel);
             this.Controls.Add(this.groupLabel);

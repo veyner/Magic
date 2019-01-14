@@ -19,6 +19,6 @@ namespace Magic
         public int FacultyID { get; set; }
         public int SpecialityID { get; set; }
         public int GroupID { get; set; }
-        public int Cource { get; set; }
+        public int CourceID { get; set; }
     }
 }
