@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Magic.Properties
+namespace StudentCard.Properties
 {
 
 

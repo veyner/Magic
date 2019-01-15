@@ -1,4 +1,4 @@
-﻿namespace Magic
+﻿namespace StudentCard
 {
     partial class StudentCard
     {

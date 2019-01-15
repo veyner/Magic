@@ -5,7 +5,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 
-namespace Magic
+namespace StudentCard
 {
     public partial class TableManager : Form
     {

@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using System.Windows.Controls;
 using Newtonsoft.Json;
 
-namespace Magic
+namespace StudentCard
 {
     public partial class StudentCard : Form
     {
