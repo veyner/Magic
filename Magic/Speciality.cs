@@ -10,6 +10,6 @@ namespace StudentCard
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<Cource> Cources { get; set; }
+        public int FacultyID { get; set; }
     }
 }

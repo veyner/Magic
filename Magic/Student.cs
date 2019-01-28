@@ -9,7 +9,7 @@ namespace StudentCard
     public class Student
     {
         public string Surname { get; set; }
-        public string Name { get; set; }
+        public string Names { get; set; }
         public string MiddleName { get; set; }
         public string City { get; set; }
         public string Street { get; set; }
@@ -19,6 +19,6 @@ namespace StudentCard
         public int FacultyID { get; set; }
         public int SpecialityID { get; set; }
         public int GroupID { get; set; }
-        public int CourceID { get; set; }
+        public string Cource { get; set; }
     }
 }

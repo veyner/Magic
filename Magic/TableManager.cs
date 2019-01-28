@@ -9,128 +9,145 @@ namespace StudentCard
 {
     public partial class TableManager : Form
     {
-        public void FacultyFilter(ComboBox facultyComboBox, DataGridView studentListDataGridView)
+        public List<StudentForTable> FacultyFilter(Faculty currentFaculty)
         {
-            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
-            var studentList = new StudentForTable().LoadInfoToTable();
-            var currentStudentList = new List<StudentForTable>();
-
-            if (currentFaculty != null)
-            {
-                currentStudentList.Clear();
-                studentListDataGridView.DataSource = null;
-                studentListDataGridView.Refresh();
-                foreach (StudentForTable student in studentList)
-                {
-                    if (student.FacultyName == currentFaculty.Name)
-                    {
-                        currentStudentList.Add(student);
-                    }
-                }
-                studentListDataGridView.DataSource = currentStudentList;
-                RenameColumnsNames(studentListDataGridView);
-            }
-        }
-
-        public void SpecialityFilter(ComboBox facultyComboBox, ComboBox specialityComboBox, DataGridView studentListDataGridView)
-        {
-            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
-            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
             var studentList = new StudentForTable().LoadInfoToTable();
             var currentStudentList = new List<StudentForTable>();
 
             currentStudentList.Clear();
-            studentListDataGridView.DataSource = null;
-            studentListDataGridView.Refresh();
 
-            if (currentSpeciality != null)
+            foreach (StudentForTable student in studentList)
             {
-                foreach (StudentForTable student in studentList)
+                if (student.FacultyName == currentFaculty.Name)
                 {
-                    if (student.SpecialityName == currentSpeciality.Name && student.FacultyName == currentFaculty.Name)
-                    {
-                        currentStudentList.Add(student);
-                    }
+                    currentStudentList.Add(student);
                 }
-                studentListDataGridView.DataSource = currentStudentList;
-                RenameColumnsNames(studentListDataGridView);
             }
+            return currentStudentList;
         }
 
-        public void CourceFilter(ComboBox facultyComboBox, ComboBox specialityComboBox, ComboBox courceComboBox, DataGridView studentListDataGridView)
+        public List<StudentForTable> SpecialityFilter(Speciality currentSpeciality)
         {
-            var currentCource = (Cource)courceComboBox.SelectedItem;
-            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
-            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
             var studentList = new StudentForTable().LoadInfoToTable();
             var currentStudentList = new List<StudentForTable>();
 
             currentStudentList.Clear();
-            studentListDataGridView.DataSource = null;
-            studentListDataGridView.Refresh();
 
-            if (currentCource != null)
+            foreach (StudentForTable student in studentList)
             {
-                foreach (StudentForTable student in studentList)
+                if (student.SpecialityName == currentSpeciality.Name)
                 {
-                    if (student.CourceNumber == currentCource.Number && student.SpecialityName == currentSpeciality.Name && student.FacultyName == currentFaculty.Name)
-                    {
-                        currentStudentList.Add(student);
-                    }
+                    currentStudentList.Add(student);
                 }
-                studentListDataGridView.DataSource = currentStudentList;
-                RenameColumnsNames(studentListDataGridView);
             }
+            return currentStudentList;
         }
 
-        public void GroupFilter(ComboBox facultyComboBox, ComboBox specialityComboBox, ComboBox courceComboBox, ComboBox groupComboBox, DataGridView studentListDataGridView)
+        public List<StudentForTable> GroupFilter(Group currentGroup)
         {
-            var currentGroup = (Group)groupComboBox.SelectedItem;
-            var currentCource = (Cource)courceComboBox.SelectedItem;
-            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
-            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
-
             var studentList = new StudentForTable().LoadInfoToTable();
             var currentStudentList = new List<StudentForTable>();
 
             currentStudentList.Clear();
-            studentListDataGridView.DataSource = null;
-            studentListDataGridView.Refresh();
 
-            if (currentGroup != null)
+            foreach (StudentForTable student in studentList)
             {
-                foreach (StudentForTable student in studentList)
+                if (student.GroupName == currentGroup.Name)
                 {
-                    if (student.GroupName == currentGroup.Name && student.CourceNumber == currentCource.Number && student.SpecialityName == currentSpeciality.Name && student.FacultyName == currentFaculty.Name)
+                    currentStudentList.Add(student);
+                }
+            }
+            return currentStudentList;
+        }
+
+        public List<StudentForTable> CourceFilter(Cource currentCource, Faculty currentFaculty, Speciality currentSpeciality, Group currentGroup)
+        {
+            var studentList = new StudentForTable().LoadInfoToTable();
+            var currentStudentList = new List<StudentForTable>();
+            if (studentList != null)
+            {
+                if (currentFaculty.ID == 0)
+                {
+                    foreach (StudentForTable student in studentList)
                     {
-                        currentStudentList.Add(student);
+                        if (currentCource.Number == student.Cource)
+                        {
+                            currentStudentList.Add(student);
+                        }
                     }
                 }
-                studentListDataGridView.DataSource = currentStudentList;
-                RenameColumnsNames(studentListDataGridView);
+                if (currentCource.Number == "Все")
+                {
+                    if (currentFaculty.ID == 0)
+                    {
+                        foreach (StudentForTable student in studentList)
+                        {
+                            currentStudentList.Add(student);
+                        }
+                    }
+                    else
+                    {
+                        if (currentFaculty.ID != 0)
+                        {
+                            currentStudentList = new TableManager().FacultyFilter(currentFaculty);
+                            if (currentSpeciality.ID != 0)
+                            {
+                                currentStudentList.Clear();
+
+                                currentStudentList = new TableManager().SpecialityFilter(currentSpeciality);
+                                if (currentGroup.ID != 0)
+                                {
+                                    currentStudentList.Clear();
+                                    currentStudentList = new TableManager().GroupFilter(currentGroup);
+                                }
+                            }
+                        }
+                    }
+                }
+                else
+                {
+                    if (currentFaculty.ID != 0)
+                    {
+                        foreach (StudentForTable student in studentList)
+                        {
+                            if (currentFaculty.Name == student.FacultyName && currentCource.Number == student.Cource)
+                            {
+                                currentStudentList.Add(student);
+                            }
+                        }
+                        if (currentSpeciality.ID != 0)
+                        {
+                            currentStudentList.Clear();
+
+                            foreach (StudentForTable student in studentList)
+                            {
+                                if (currentSpeciality.Name == student.SpecialityName && currentCource.Number == student.Cource)
+                                {
+                                    currentStudentList.Add(student);
+                                }
+                            }
+                            if (currentGroup.ID != 0)
+                            {
+                                currentStudentList.Clear();
+                                foreach (StudentForTable student in studentList)
+                                {
+                                    if (currentGroup.Name == student.GroupName && currentCource.Number == student.Cource)
+                                    {
+                                        currentStudentList.Add(student);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
+            return currentStudentList;
         }
 
         public void LoadFullInfo(DataGridView studentListDataGridView)
         {
             var studentListForTable = new StudentForTable().LoadInfoToTable();
             studentListDataGridView.DataSource = studentListForTable;
-            RenameColumnsNames(studentListDataGridView);
-        }
-
-        private void RenameColumnsNames(DataGridView studentListDataGridView)
-        {
-            studentListDataGridView.Columns[0].HeaderText = "Фамилия";
-            studentListDataGridView.Columns[1].HeaderText = "Имя";
-            studentListDataGridView.Columns[2].HeaderText = "Отчество";
-            studentListDataGridView.Columns[3].HeaderText = "Город";
-            studentListDataGridView.Columns[4].HeaderText = "Адрес";
-            studentListDataGridView.Columns[5].HeaderText = "Номер телефона";
-            studentListDataGridView.Columns[6].HeaderText = "Email";
-            studentListDataGridView.Columns[7].HeaderText = "Факультет";
-            studentListDataGridView.Columns[8].HeaderText = "Специальность";
-            studentListDataGridView.Columns[9].HeaderText = "Группа";
-            studentListDataGridView.Columns[10].HeaderText = "Курс";
         }
     }
 }

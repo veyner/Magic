@@ -16,57 +16,65 @@ namespace StudentCard
         public void LoadInfoToFacultyCombobox(ComboBox facultyComboBox)
         {
             var curriculumInfo = new Curriculum().LoadCurruculumData();
-            if (facultyComboBox.Name == "facultyComboBox")
+            if (facultyComboBox.Name == "FacultyComboBox")
             {
                 facultyComboBox.DataSource = curriculumInfo.Faculties;
                 facultyComboBox.DisplayMember = nameof(Faculty.Name);
-                facultyComboBox.SelectedIndex = -1;
             }
         }
 
         public void LoadInfoToSpecialityComboBox(ComboBox specialityComboBox, ComboBox facultyComboBox)
         {
-            if (facultyComboBox.SelectedIndex == -1)
+            var curriculumInfo = new Curriculum().LoadCurruculumData();
+            var specialityList = curriculumInfo.Specialities;
+            var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
+
+            var specialitiesForCurrentFaculty = new List<Speciality>();
+            specialitiesForCurrentFaculty.Add(specialityList[0]);
+            foreach (Speciality speciality in specialityList)
             {
-                specialityComboBox.SelectedIndex = -1;
+                if (speciality.FacultyID == currentFaculty.ID)
+                {
+                    specialitiesForCurrentFaculty.Add(speciality);
+                }
             }
-            else
-            {
-                var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
-                specialityComboBox.DataSource = currentFaculty.Specialities;
-                specialityComboBox.DisplayMember = nameof(Speciality.Name);
-                specialityComboBox.SelectedIndex = -1;
-            }
+            specialityComboBox.DataSource = specialitiesForCurrentFaculty;
+            specialityComboBox.DisplayMember = nameof(Speciality.Name);
         }
 
-        public void LoadInfoToCourceComboBox(ComboBox courceComboBox, ComboBox specialityComboBox)
+        public void LoadInfoToCourceComboBox(ComboBox courceComboBox)
         {
-            if (specialityComboBox.SelectedIndex == -1)
+            var cources = new List<Cource>();
+            var emptyCource = new Cource();
+            emptyCource.Number = "Все";
+            cources.Add(emptyCource);
+            for (var i = 0; i < 5; i++)
             {
-                courceComboBox.SelectedIndex = -1;
+                var cource = new Cource();
+                cource.Number = (i + 1).ToString();
+                cources.Add(cource);
             }
-            else
-            {
-                var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
-                courceComboBox.DataSource = currentSpeciality.Cources;
-                courceComboBox.DisplayMember = nameof(Cource.Number);
-                courceComboBox.SelectedIndex = -1;
-            }
+            courceComboBox.DataSource = cources;
+            courceComboBox.DisplayMember = nameof(Cource.Number);
         }
 
-        public void LoadInfoToGroupComboBox(ComboBox groupComboBox, ComboBox courceComboBox)
+        public void LoadInfoToGroupComboBox(ComboBox groupComboBox, ComboBox specialityComboBox)
         {
-            if (courceComboBox.SelectedIndex == -1)
+            var curriculumInfo = new Curriculum().LoadCurruculumData();
+            var groupList = curriculumInfo.Groups;
+            var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
+
+            var groupsForCurrentSpeciality = new List<Group>();
+            groupsForCurrentSpeciality.Add(groupList[0]);
+            foreach (Group group in groupList)
             {
-                groupComboBox.SelectedIndex = -1;
+                if (group.SpecialityID == currentSpeciality.ID)
+                {
+                    groupsForCurrentSpeciality.Add(group);
+                }
             }
-            else
-            {
-                var currentCource = (Cource)courceComboBox.SelectedItem;
-                groupComboBox.DataSource = currentCource.Groups;
-                groupComboBox.DisplayMember = nameof(Group.Name);
-                groupComboBox.SelectedIndex = -1;
-            }
+            groupComboBox.DataSource = groupsForCurrentSpeciality;
+            groupComboBox.DisplayMember = nameof(Group.Name);
         }
     }
 }

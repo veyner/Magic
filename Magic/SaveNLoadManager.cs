@@ -21,6 +21,13 @@ namespace StudentCard
             }
         }
 
+        public void DeleteData(Student student)
+        {
+            var fullPath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, student.Surname + ".json");
+
+            File.Delete(fullPath);
+        }
+
         public Student LoadData(string studentsData)
         {
             var fullDataPath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, studentsData);

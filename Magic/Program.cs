@@ -17,7 +17,7 @@ namespace StudentCard
             //new Curriculum().SaveCurriculumData();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StudentCard());
+            Application.Run(new StudentTable());
         }
     }
 }

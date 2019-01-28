@@ -8,8 +8,6 @@ namespace StudentCard
 {
     public class Cource
     {
-        public int ID { get; set; }
         public string Number { get; set; }
-        public List<Group> Groups { get; set; }
     }
 }
