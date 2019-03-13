@@ -7,15 +7,17 @@ using System.Windows.Forms;
 
 namespace StudentCard
 {
-    public class ComboBoxManager : Form
+    public class ComboBoxManager
     {
+        private Curriculum curriculumInfo;
+
         public ComboBoxManager()
         {
+            curriculumInfo = new SaveNLoadManager().LoadCurruculumData();
         }
 
         public void LoadInfoToFacultyCombobox(ComboBox facultyComboBox)
         {
-            var curriculumInfo = new Curriculum().LoadCurruculumData();
             if (facultyComboBox.Name == "FacultyComboBox")
             {
                 facultyComboBox.DataSource = curriculumInfo.Faculties;
@@ -25,7 +27,6 @@ namespace StudentCard
 
         public void LoadInfoToSpecialityComboBox(ComboBox specialityComboBox, ComboBox facultyComboBox)
         {
-            var curriculumInfo = new Curriculum().LoadCurruculumData();
             var specialityList = curriculumInfo.Specialities;
             var currentFaculty = (Faculty)facultyComboBox.SelectedItem;
 
@@ -44,6 +45,13 @@ namespace StudentCard
 
         public void LoadInfoToCourceComboBox(ComboBox courceComboBox)
         {
+            var cources = CreateCourceList();
+            courceComboBox.DataSource = cources;
+            courceComboBox.DisplayMember = nameof(Cource.Number);
+        }
+
+        public List<Cource> CreateCourceList()
+        {
             var cources = new List<Cource>();
             var emptyCource = new Cource();
             emptyCource.Number = "Все";
@@ -54,13 +62,11 @@ namespace StudentCard
                 cource.Number = (i + 1).ToString();
                 cources.Add(cource);
             }
-            courceComboBox.DataSource = cources;
-            courceComboBox.DisplayMember = nameof(Cource.Number);
+            return cources;
         }
 
         public void LoadInfoToGroupComboBox(ComboBox groupComboBox, ComboBox specialityComboBox)
         {
-            var curriculumInfo = new Curriculum().LoadCurruculumData();
             var groupList = curriculumInfo.Groups;
             var currentSpeciality = (Speciality)specialityComboBox.SelectedItem;
 

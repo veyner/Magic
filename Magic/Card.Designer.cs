@@ -38,7 +38,7 @@
             this.MiddlenameLabel = new System.Windows.Forms.Label();
             this.MiddlenameTextBox = new System.Windows.Forms.TextBox();
             this.CityTextBox = new System.Windows.Forms.TextBox();
-            this.StreetTextBox = new System.Windows.Forms.TextBox();
+            this.AddressTextBox = new System.Windows.Forms.TextBox();
             this.CityLabel = new System.Windows.Forms.Label();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.EmailTextBox = new System.Windows.Forms.TextBox();
@@ -51,6 +51,10 @@
             this.GroupLabel = new System.Windows.Forms.Label();
             this.SpecialityLabel = new System.Windows.Forms.Label();
             this.CourceLabel = new System.Windows.Forms.Label();
+            this.ChangeButton = new System.Windows.Forms.Button();
+            this.FotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.FotoOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
+            ((System.ComponentModel.ISupportInitialize)(this.FotoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // SurnameTextBox
@@ -62,11 +66,11 @@
             // 
             // SaveStudentCardButton
             // 
-            this.SaveStudentCardButton.Location = new System.Drawing.Point(15, 350);
+            this.SaveStudentCardButton.Location = new System.Drawing.Point(190, 350);
             this.SaveStudentCardButton.Name = "SaveStudentCardButton";
-            this.SaveStudentCardButton.Size = new System.Drawing.Size(341, 28);
+            this.SaveStudentCardButton.Size = new System.Drawing.Size(121, 28);
             this.SaveStudentCardButton.TabIndex = 1;
-            this.SaveStudentCardButton.Text = "Сохранить данные";
+            this.SaveStudentCardButton.Text = "Сохранить";
             this.SaveStudentCardButton.UseVisualStyleBackColor = true;
             this.SaveStudentCardButton.Click += new System.EventHandler(this.saveStudentCardButton_Click);
             // 
@@ -98,7 +102,7 @@
             // FacultyComboBox
             // 
             this.FacultyComboBox.FormattingEnabled = true;
-            this.FacultyComboBox.Location = new System.Drawing.Point(193, 22);
+            this.FacultyComboBox.Location = new System.Drawing.Point(190, 167);
             this.FacultyComboBox.Name = "FacultyComboBox";
             this.FacultyComboBox.Size = new System.Drawing.Size(121, 21);
             this.FacultyComboBox.TabIndex = 7;
@@ -107,7 +111,7 @@
             // FacultyLabel
             // 
             this.FacultyLabel.AutoSize = true;
-            this.FacultyLabel.Location = new System.Drawing.Point(190, 9);
+            this.FacultyLabel.Location = new System.Drawing.Point(187, 154);
             this.FacultyLabel.Name = "FacultyLabel";
             this.FacultyLabel.Size = new System.Drawing.Size(63, 13);
             this.FacultyLabel.TabIndex = 8;
@@ -136,12 +140,12 @@
             this.CityTextBox.Size = new System.Drawing.Size(169, 20);
             this.CityTextBox.TabIndex = 11;
             // 
-            // StreetTextBox
+            // AddressTextBox
             // 
-            this.StreetTextBox.Location = new System.Drawing.Point(15, 218);
-            this.StreetTextBox.Name = "StreetTextBox";
-            this.StreetTextBox.Size = new System.Drawing.Size(169, 20);
-            this.StreetTextBox.TabIndex = 12;
+            this.AddressTextBox.Location = new System.Drawing.Point(15, 218);
+            this.AddressTextBox.Name = "AddressTextBox";
+            this.AddressTextBox.Size = new System.Drawing.Size(169, 20);
+            this.AddressTextBox.TabIndex = 12;
             // 
             // CityLabel
             // 
@@ -196,7 +200,7 @@
             // SpecialityComboBox
             // 
             this.SpecialityComboBox.FormattingEnabled = true;
-            this.SpecialityComboBox.Location = new System.Drawing.Point(193, 70);
+            this.SpecialityComboBox.Location = new System.Drawing.Point(190, 215);
             this.SpecialityComboBox.Name = "SpecialityComboBox";
             this.SpecialityComboBox.Size = new System.Drawing.Size(121, 21);
             this.SpecialityComboBox.TabIndex = 19;
@@ -205,16 +209,15 @@
             // CourceComboBox
             // 
             this.CourceComboBox.FormattingEnabled = true;
-            this.CourceComboBox.Location = new System.Drawing.Point(193, 119);
+            this.CourceComboBox.Location = new System.Drawing.Point(190, 264);
             this.CourceComboBox.Name = "CourceComboBox";
             this.CourceComboBox.Size = new System.Drawing.Size(121, 21);
             this.CourceComboBox.TabIndex = 20;
-            this.CourceComboBox.SelectedIndexChanged += new System.EventHandler(this.courceComboBox_SelectedIndexChanged);
             // 
             // GroupComboBox
             // 
             this.GroupComboBox.FormattingEnabled = true;
-            this.GroupComboBox.Location = new System.Drawing.Point(193, 169);
+            this.GroupComboBox.Location = new System.Drawing.Point(190, 314);
             this.GroupComboBox.Name = "GroupComboBox";
             this.GroupComboBox.Size = new System.Drawing.Size(121, 21);
             this.GroupComboBox.TabIndex = 21;
@@ -222,7 +225,7 @@
             // GroupLabel
             // 
             this.GroupLabel.AutoSize = true;
-            this.GroupLabel.Location = new System.Drawing.Point(190, 153);
+            this.GroupLabel.Location = new System.Drawing.Point(187, 298);
             this.GroupLabel.Name = "GroupLabel";
             this.GroupLabel.Size = new System.Drawing.Size(42, 13);
             this.GroupLabel.TabIndex = 22;
@@ -231,7 +234,7 @@
             // SpecialityLabel
             // 
             this.SpecialityLabel.AutoSize = true;
-            this.SpecialityLabel.Location = new System.Drawing.Point(190, 55);
+            this.SpecialityLabel.Location = new System.Drawing.Point(187, 200);
             this.SpecialityLabel.Name = "SpecialityLabel";
             this.SpecialityLabel.Size = new System.Drawing.Size(85, 13);
             this.SpecialityLabel.TabIndex = 23;
@@ -240,17 +243,43 @@
             // CourceLabel
             // 
             this.CourceLabel.AutoSize = true;
-            this.CourceLabel.Location = new System.Drawing.Point(190, 104);
+            this.CourceLabel.Location = new System.Drawing.Point(187, 249);
             this.CourceLabel.Name = "CourceLabel";
             this.CourceLabel.Size = new System.Drawing.Size(31, 13);
             this.CourceLabel.TabIndex = 24;
             this.CourceLabel.Text = "Курс";
             // 
+            // ChangeButton
+            // 
+            this.ChangeButton.Location = new System.Drawing.Point(32, 350);
+            this.ChangeButton.Name = "ChangeButton";
+            this.ChangeButton.Size = new System.Drawing.Size(121, 28);
+            this.ChangeButton.TabIndex = 26;
+            this.ChangeButton.Text = "Изменить";
+            this.ChangeButton.UseVisualStyleBackColor = true;
+            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
+            // 
+            // FotoPictureBox
+            // 
+            this.FotoPictureBox.Location = new System.Drawing.Point(190, 22);
+            this.FotoPictureBox.Name = "FotoPictureBox";
+            this.FotoPictureBox.Size = new System.Drawing.Size(121, 118);
+            this.FotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.FotoPictureBox.TabIndex = 27;
+            this.FotoPictureBox.TabStop = false;
+            this.FotoPictureBox.Click += new System.EventHandler(this.FotoPictureBox_Click);
+            // 
+            // FotoOpenFileDialog
+            // 
+            this.FotoOpenFileDialog.FileName = "openFileDialog1";
+            // 
             // StudentCard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(368, 395);
+            this.ClientSize = new System.Drawing.Size(326, 395);
+            this.Controls.Add(this.FotoPictureBox);
+            this.Controls.Add(this.ChangeButton);
             this.Controls.Add(this.CourceLabel);
             this.Controls.Add(this.SpecialityLabel);
             this.Controls.Add(this.GroupLabel);
@@ -263,7 +292,7 @@
             this.Controls.Add(this.EmailTextBox);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.CityLabel);
-            this.Controls.Add(this.StreetTextBox);
+            this.Controls.Add(this.AddressTextBox);
             this.Controls.Add(this.CityTextBox);
             this.Controls.Add(this.MiddlenameTextBox);
             this.Controls.Add(this.MiddlenameLabel);
@@ -278,7 +307,8 @@
             this.MaximizeBox = false;
             this.Name = "StudentCard";
             this.Text = "Карточка студента";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.StudentCard_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.FotoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,7 +326,7 @@
         private System.Windows.Forms.Label MiddlenameLabel;
         private System.Windows.Forms.TextBox MiddlenameTextBox;
         private System.Windows.Forms.TextBox CityTextBox;
-        private System.Windows.Forms.TextBox StreetTextBox;
+        private System.Windows.Forms.TextBox AddressTextBox;
         private System.Windows.Forms.Label CityLabel;
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.TextBox EmailTextBox;
@@ -309,6 +339,9 @@
         private System.Windows.Forms.Label GroupLabel;
         private System.Windows.Forms.Label SpecialityLabel;
         private System.Windows.Forms.Label CourceLabel;
+        private System.Windows.Forms.Button ChangeButton;
+        private System.Windows.Forms.PictureBox FotoPictureBox;
+        private System.Windows.Forms.OpenFileDialog FotoOpenFileDialog;
     }
 }
 

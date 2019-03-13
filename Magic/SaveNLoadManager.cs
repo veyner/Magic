@@ -12,7 +12,7 @@ namespace StudentCard
     {
         public void SaveData(Student student)
         {
-            var fullSavePath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, student.Surname + ".json");
+            var fullSavePath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
 
             using (var writer = new StreamWriter(fullSavePath))
             {
@@ -23,14 +23,14 @@ namespace StudentCard
 
         public void DeleteData(Student student)
         {
-            var fullPath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, student.Surname + ".json");
+            var fullPath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
 
             File.Delete(fullPath);
         }
 
-        public Student LoadData(string studentsData)
+        private Student LoadData(string studentsData)
         {
-            var fullDataPath = Path.Combine(Properties.Settings.Default.PathToStudentInfo, studentsData);
+            var fullDataPath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, studentsData);
             using (var reader = new StreamReader(fullDataPath))
             {
                 var json = reader.ReadToEnd();
@@ -38,7 +38,7 @@ namespace StudentCard
             }
         }
 
-        public List<Student> GetStudents(string PathToStudentInfo)
+        private List<Student> GetStudents(string PathToStudentInfo)
         {
             if (!Directory.Exists(PathToStudentInfo))
             {
@@ -57,7 +57,17 @@ namespace StudentCard
 
         public List<Student> LoadStudentData()
         {
-            return GetStudents(Properties.Settings.Default.PathToStudentInfo);
+            return GetStudents(Magic.Properties.Settings.Default.PathToStudentInfo);
+        }
+
+        public Curriculum LoadCurruculumData()
+        {
+            var fullDataPath = Path.Combine(Magic.Properties.Settings.Default.PathToData, "CurriculumInfo.json");
+            using (var reader = new StreamReader(fullDataPath))
+            {
+                var json = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<Curriculum>(json); ;
+            }
         }
     }
 }

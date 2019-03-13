@@ -8,6 +8,7 @@ namespace StudentCard
 {
     public class Student
     {
+        public Guid Guid { get; set; }
         public string Surname { get; set; }
         public string Names { get; set; }
         public string MiddleName { get; set; }

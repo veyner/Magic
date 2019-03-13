@@ -20,52 +20,5 @@ namespace StudentCard
         public string SpecialityName { get; set; }
         public string GroupName { get; set; }
         public string Cource { get; set; }
-
-        public List<StudentForTable> LoadInfoToTable()
-        {
-            var studentData = new SaveNLoadManager().LoadStudentData();
-            var studentListForTable = new List<StudentForTable>();
-            var curriculumInfo = new Curriculum().LoadCurruculumData();
-            var facultyList = curriculumInfo.Faculties;
-            var specialityList = curriculumInfo.Specialities;
-            var groupList = curriculumInfo.Groups;
-            foreach (Student student in studentData)
-            {
-                var studentForTable = new StudentForTable();
-                studentListForTable.Add(studentForTable);
-                studentForTable.Names = student.Names;
-                studentForTable.MiddleName = student.MiddleName;
-                studentForTable.Surname = student.Surname;
-                studentForTable.City = student.City;
-                studentForTable.Street = student.Street;
-                studentForTable.TelefonNumber = student.TelefonNumber;
-                studentForTable.Email = student.Email;
-
-                for (var i = 0; i < facultyList.Count; i++)
-                {
-                    if (student.FacultyID == facultyList[i].ID)
-                    {
-                        studentForTable.FacultyName = facultyList[i].Name;
-                    }
-                }
-                for (var k = 0; k < specialityList.Count; k++)
-                {
-                    if (student.SpecialityID == specialityList[k].ID)
-                    {
-                        studentForTable.SpecialityName = specialityList[k].Name;
-                    }
-                }
-
-                for (var l = 0; l < groupList.Count; l++)
-                {
-                    if (student.GroupID == groupList[l].ID)
-                    {
-                        studentForTable.GroupName = groupList[l].Name;
-                    }
-                }
-                studentForTable.Cource = student.Cource;
-            }
-            return studentListForTable;
-        }
     }
 }

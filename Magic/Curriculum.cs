@@ -45,15 +45,5 @@ namespace StudentCard
                  writer.Write(json);
              }
          }*/
-
-        public Curriculum LoadCurruculumData()
-        {
-            var fullDataPath = Path.Combine(Properties.Settings.Default.PathToData, "CurriculumInfo.json");
-            using (var reader = new StreamReader(fullDataPath))
-            {
-                var json = reader.ReadToEnd();
-                return JsonConvert.DeserializeObject<Curriculum>(json);
-            }
-        }
     }
 }
