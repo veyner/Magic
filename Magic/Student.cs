@@ -16,6 +16,7 @@ namespace StudentCard
         public string Street { get; set; }
         public long TelefonNumber { get; set; }
         public string Email { get; set; }
+        public bool Foto { get; set; }
 
         public int FacultyID { get; set; }
         public int SpecialityID { get; set; }

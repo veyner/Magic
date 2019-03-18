@@ -23,9 +23,13 @@ namespace StudentCard
 
         public void DeleteData(Student student)
         {
-            var fullPath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
-
-            File.Delete(fullPath);
+            var fullPathToStudent = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
+            if (student.Foto)
+            {
+                var fullPathToFoto = Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid.ToString() + ".jpg");
+                File.Delete(fullPathToFoto);
+            }
+            File.Delete(fullPathToStudent);
         }
 
         private Student LoadData(string studentsData)

@@ -66,13 +66,13 @@
             // 
             // SaveStudentCardButton
             // 
-            this.SaveStudentCardButton.Location = new System.Drawing.Point(190, 350);
+            this.SaveStudentCardButton.Location = new System.Drawing.Point(176, 355);
             this.SaveStudentCardButton.Name = "SaveStudentCardButton";
-            this.SaveStudentCardButton.Size = new System.Drawing.Size(121, 28);
+            this.SaveStudentCardButton.Size = new System.Drawing.Size(138, 28);
             this.SaveStudentCardButton.TabIndex = 1;
             this.SaveStudentCardButton.Text = "Сохранить";
             this.SaveStudentCardButton.UseVisualStyleBackColor = true;
-            this.SaveStudentCardButton.Click += new System.EventHandler(this.saveStudentCardButton_Click);
+            this.SaveStudentCardButton.Click += new System.EventHandler(this.SaveStudentCardButton_Click);
             // 
             // SurnameLabel
             // 
@@ -106,7 +106,7 @@
             this.FacultyComboBox.Name = "FacultyComboBox";
             this.FacultyComboBox.Size = new System.Drawing.Size(121, 21);
             this.FacultyComboBox.TabIndex = 7;
-            this.FacultyComboBox.SelectedIndexChanged += new System.EventHandler(this.facultyComboBox_SelectedIndexChanged);
+            this.FacultyComboBox.SelectedIndexChanged += new System.EventHandler(this.FacultyComboBox_SelectedIndexChanged);
             // 
             // FacultyLabel
             // 
@@ -204,7 +204,7 @@
             this.SpecialityComboBox.Name = "SpecialityComboBox";
             this.SpecialityComboBox.Size = new System.Drawing.Size(121, 21);
             this.SpecialityComboBox.TabIndex = 19;
-            this.SpecialityComboBox.SelectedIndexChanged += new System.EventHandler(this.specialityComboBox_SelectedIndexChanged);
+            this.SpecialityComboBox.SelectedIndexChanged += new System.EventHandler(this.SpecialityComboBox_SelectedIndexChanged);
             // 
             // CourceComboBox
             // 
@@ -213,6 +213,7 @@
             this.CourceComboBox.Name = "CourceComboBox";
             this.CourceComboBox.Size = new System.Drawing.Size(121, 21);
             this.CourceComboBox.TabIndex = 20;
+            this.CourceComboBox.SelectedIndexChanged += new System.EventHandler(this.CourceComboBox_SelectedIndexChanged);
             // 
             // GroupComboBox
             // 
@@ -251,9 +252,9 @@
             // 
             // ChangeButton
             // 
-            this.ChangeButton.Location = new System.Drawing.Point(32, 350);
+            this.ChangeButton.Location = new System.Drawing.Point(12, 355);
             this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(121, 28);
+            this.ChangeButton.Size = new System.Drawing.Size(138, 28);
             this.ChangeButton.TabIndex = 26;
             this.ChangeButton.Text = "Изменить";
             this.ChangeButton.UseVisualStyleBackColor = true;
@@ -261,9 +262,9 @@
             // 
             // FotoPictureBox
             // 
-            this.FotoPictureBox.Location = new System.Drawing.Point(190, 22);
+            this.FotoPictureBox.Location = new System.Drawing.Point(190, 12);
             this.FotoPictureBox.Name = "FotoPictureBox";
-            this.FotoPictureBox.Size = new System.Drawing.Size(121, 118);
+            this.FotoPictureBox.Size = new System.Drawing.Size(121, 139);
             this.FotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.FotoPictureBox.TabIndex = 27;
             this.FotoPictureBox.TabStop = false;
@@ -307,7 +308,6 @@
             this.MaximizeBox = false;
             this.Name = "StudentCard";
             this.Text = "Карточка студента";
-            this.Load += new System.EventHandler(this.StudentCard_Load);
             ((System.ComponentModel.ISupportInitialize)(this.FotoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

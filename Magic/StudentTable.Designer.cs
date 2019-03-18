@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.StudentCardsTreeView = new System.Windows.Forms.TreeView();
             this.SearchButton = new System.Windows.Forms.Button();
             this.SurnameSearchTextBox = new System.Windows.Forms.TextBox();
             this.NameSearchTextBox = new System.Windows.Forms.TextBox();
@@ -44,19 +44,23 @@
             this.DeleteButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // treeView1
+            // StudentCardsTreeView
             // 
-            this.treeView1.Location = new System.Drawing.Point(12, 12);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(337, 421);
-            this.treeView1.TabIndex = 35;
-            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
-            this.treeView1.Click += new System.EventHandler(this.treeView1_Click);
-            this.treeView1.DoubleClick += new System.EventHandler(this.treeView1_DoubleClick);
+            this.StudentCardsTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.StudentCardsTreeView.Location = new System.Drawing.Point(12, 12);
+            this.StudentCardsTreeView.Name = "StudentCardsTreeView";
+            this.StudentCardsTreeView.Size = new System.Drawing.Size(339, 421);
+            this.StudentCardsTreeView.TabIndex = 35;
+            this.StudentCardsTreeView.DoubleClick += new System.EventHandler(this.StudentCardsTreeView_DoubleClick);
             // 
             // SearchButton
             // 
-            this.SearchButton.Location = new System.Drawing.Point(384, 194);
+            this.SearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SearchButton.Location = new System.Drawing.Point(386, 194);
+            this.SearchButton.MaximumSize = new System.Drawing.Size(75, 23);
+            this.SearchButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.SearchButton.Name = "SearchButton";
             this.SearchButton.Size = new System.Drawing.Size(75, 23);
             this.SearchButton.TabIndex = 36;
@@ -66,29 +70,33 @@
             // 
             // SurnameSearchTextBox
             // 
-            this.SurnameSearchTextBox.Location = new System.Drawing.Point(384, 50);
+            this.SurnameSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.SurnameSearchTextBox.Location = new System.Drawing.Point(386, 50);
             this.SurnameSearchTextBox.Name = "SurnameSearchTextBox";
             this.SurnameSearchTextBox.Size = new System.Drawing.Size(170, 20);
             this.SurnameSearchTextBox.TabIndex = 37;
             // 
             // NameSearchTextBox
             // 
-            this.NameSearchTextBox.Location = new System.Drawing.Point(384, 89);
+            this.NameSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.NameSearchTextBox.Location = new System.Drawing.Point(386, 89);
             this.NameSearchTextBox.Name = "NameSearchTextBox";
             this.NameSearchTextBox.Size = new System.Drawing.Size(170, 20);
             this.NameSearchTextBox.TabIndex = 38;
             // 
             // MidNameSearchTextBox
             // 
-            this.MidNameSearchTextBox.Location = new System.Drawing.Point(384, 128);
+            this.MidNameSearchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.MidNameSearchTextBox.Location = new System.Drawing.Point(386, 128);
             this.MidNameSearchTextBox.Name = "MidNameSearchTextBox";
             this.MidNameSearchTextBox.Size = new System.Drawing.Size(170, 20);
             this.MidNameSearchTextBox.TabIndex = 39;
             // 
             // SearchLabel
             // 
+            this.SearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SearchLabel.AutoSize = true;
-            this.SearchLabel.Location = new System.Drawing.Point(381, 12);
+            this.SearchLabel.Location = new System.Drawing.Point(383, 12);
             this.SearchLabel.Name = "SearchLabel";
             this.SearchLabel.Size = new System.Drawing.Size(39, 13);
             this.SearchLabel.TabIndex = 40;
@@ -96,8 +104,9 @@
             // 
             // SurnameSearchLabel
             // 
+            this.SurnameSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.SurnameSearchLabel.AutoSize = true;
-            this.SurnameSearchLabel.Location = new System.Drawing.Point(381, 34);
+            this.SurnameSearchLabel.Location = new System.Drawing.Point(383, 34);
             this.SurnameSearchLabel.Name = "SurnameSearchLabel";
             this.SurnameSearchLabel.Size = new System.Drawing.Size(56, 13);
             this.SurnameSearchLabel.TabIndex = 41;
@@ -105,8 +114,9 @@
             // 
             // NameSearchLabel
             // 
+            this.NameSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.NameSearchLabel.AutoSize = true;
-            this.NameSearchLabel.Location = new System.Drawing.Point(381, 73);
+            this.NameSearchLabel.Location = new System.Drawing.Point(383, 73);
             this.NameSearchLabel.Name = "NameSearchLabel";
             this.NameSearchLabel.Size = new System.Drawing.Size(29, 13);
             this.NameSearchLabel.TabIndex = 42;
@@ -114,8 +124,9 @@
             // 
             // MidNameSearchLabel
             // 
+            this.MidNameSearchLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.MidNameSearchLabel.AutoSize = true;
-            this.MidNameSearchLabel.Location = new System.Drawing.Point(381, 112);
+            this.MidNameSearchLabel.Location = new System.Drawing.Point(383, 112);
             this.MidNameSearchLabel.Name = "MidNameSearchLabel";
             this.MidNameSearchLabel.Size = new System.Drawing.Size(54, 13);
             this.MidNameSearchLabel.TabIndex = 43;
@@ -123,7 +134,10 @@
             // 
             // DeleteSearchButton
             // 
-            this.DeleteSearchButton.Location = new System.Drawing.Point(479, 194);
+            this.DeleteSearchButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.DeleteSearchButton.Location = new System.Drawing.Point(481, 194);
+            this.DeleteSearchButton.MaximumSize = new System.Drawing.Size(75, 23);
+            this.DeleteSearchButton.MinimumSize = new System.Drawing.Size(75, 23);
             this.DeleteSearchButton.Name = "DeleteSearchButton";
             this.DeleteSearchButton.Size = new System.Drawing.Size(75, 23);
             this.DeleteSearchButton.TabIndex = 44;
@@ -133,8 +147,9 @@
             // 
             // CourceLabel
             // 
+            this.CourceLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CourceLabel.AutoSize = true;
-            this.CourceLabel.Location = new System.Drawing.Point(381, 151);
+            this.CourceLabel.Location = new System.Drawing.Point(383, 151);
             this.CourceLabel.Name = "CourceLabel";
             this.CourceLabel.Size = new System.Drawing.Size(31, 13);
             this.CourceLabel.TabIndex = 46;
@@ -142,17 +157,21 @@
             // 
             // CourceComboBox
             // 
+            this.CourceComboBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CourceComboBox.FormattingEnabled = true;
-            this.CourceComboBox.Location = new System.Drawing.Point(384, 167);
+            this.CourceComboBox.Location = new System.Drawing.Point(386, 167);
             this.CourceComboBox.Name = "CourceComboBox";
             this.CourceComboBox.Size = new System.Drawing.Size(121, 21);
             this.CourceComboBox.TabIndex = 45;
             // 
             // AddButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(384, 241);
+            this.AddButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.AddButton.Location = new System.Drawing.Point(14, 439);
+            this.AddButton.MaximumSize = new System.Drawing.Size(151, 23);
+            this.AddButton.MinimumSize = new System.Drawing.Size(151, 23);
             this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(75, 23);
+            this.AddButton.Size = new System.Drawing.Size(151, 23);
             this.AddButton.TabIndex = 47;
             this.AddButton.Text = "Добавить";
             this.AddButton.UseVisualStyleBackColor = true;
@@ -160,9 +179,12 @@
             // 
             // DeleteButton
             // 
-            this.DeleteButton.Location = new System.Drawing.Point(479, 241);
+            this.DeleteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.DeleteButton.Location = new System.Drawing.Point(200, 439);
+            this.DeleteButton.MaximumSize = new System.Drawing.Size(151, 23);
+            this.DeleteButton.MinimumSize = new System.Drawing.Size(151, 23);
             this.DeleteButton.Name = "DeleteButton";
-            this.DeleteButton.Size = new System.Drawing.Size(75, 23);
+            this.DeleteButton.Size = new System.Drawing.Size(151, 23);
             this.DeleteButton.TabIndex = 48;
             this.DeleteButton.Text = "Удалить";
             this.DeleteButton.UseVisualStyleBackColor = true;
@@ -172,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 485);
+            this.ClientSize = new System.Drawing.Size(589, 471);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CourceLabel);
@@ -186,19 +208,17 @@
             this.Controls.Add(this.NameSearchTextBox);
             this.Controls.Add(this.SurnameSearchTextBox);
             this.Controls.Add(this.SearchButton);
-            this.Controls.Add(this.treeView1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.Controls.Add(this.StudentCardsTreeView);
+            this.MinimumSize = new System.Drawing.Size(605, 510);
             this.Name = "StudentTable";
             this.Text = "Список студентов";
-            this.Load += new System.EventHandler(this.StudentTable_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView StudentCardsTreeView;
         private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.TextBox SurnameSearchTextBox;
         private System.Windows.Forms.TextBox NameSearchTextBox;
