@@ -51,10 +51,9 @@
             this.GroupLabel = new System.Windows.Forms.Label();
             this.SpecialityLabel = new System.Windows.Forms.Label();
             this.CourceLabel = new System.Windows.Forms.Label();
-            this.ChangeButton = new System.Windows.Forms.Button();
-            this.FotoPictureBox = new System.Windows.Forms.PictureBox();
+            this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
             this.FotoOpenFileDialog = new System.Windows.Forms.OpenFileDialog();
-            ((System.ComponentModel.ISupportInitialize)(this.FotoPictureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // SurnameTextBox
@@ -66,9 +65,9 @@
             // 
             // SaveStudentCardButton
             // 
-            this.SaveStudentCardButton.Location = new System.Drawing.Point(176, 355);
+            this.SaveStudentCardButton.Location = new System.Drawing.Point(91, 341);
             this.SaveStudentCardButton.Name = "SaveStudentCardButton";
-            this.SaveStudentCardButton.Size = new System.Drawing.Size(138, 28);
+            this.SaveStudentCardButton.Size = new System.Drawing.Size(145, 28);
             this.SaveStudentCardButton.TabIndex = 1;
             this.SaveStudentCardButton.Text = "Сохранить";
             this.SaveStudentCardButton.UseVisualStyleBackColor = true;
@@ -250,25 +249,15 @@
             this.CourceLabel.TabIndex = 24;
             this.CourceLabel.Text = "Курс";
             // 
-            // ChangeButton
+            // PhotoPictureBox
             // 
-            this.ChangeButton.Location = new System.Drawing.Point(12, 355);
-            this.ChangeButton.Name = "ChangeButton";
-            this.ChangeButton.Size = new System.Drawing.Size(138, 28);
-            this.ChangeButton.TabIndex = 26;
-            this.ChangeButton.Text = "Изменить";
-            this.ChangeButton.UseVisualStyleBackColor = true;
-            this.ChangeButton.Click += new System.EventHandler(this.ChangeButton_Click);
-            // 
-            // FotoPictureBox
-            // 
-            this.FotoPictureBox.Location = new System.Drawing.Point(190, 12);
-            this.FotoPictureBox.Name = "FotoPictureBox";
-            this.FotoPictureBox.Size = new System.Drawing.Size(121, 139);
-            this.FotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.FotoPictureBox.TabIndex = 27;
-            this.FotoPictureBox.TabStop = false;
-            this.FotoPictureBox.Click += new System.EventHandler(this.FotoPictureBox_Click);
+            this.PhotoPictureBox.Location = new System.Drawing.Point(190, 12);
+            this.PhotoPictureBox.Name = "PhotoPictureBox";
+            this.PhotoPictureBox.Size = new System.Drawing.Size(121, 139);
+            this.PhotoPictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.PhotoPictureBox.TabIndex = 27;
+            this.PhotoPictureBox.TabStop = false;
+            this.PhotoPictureBox.Click += new System.EventHandler(this.FotoPictureBox_Click);
             // 
             // FotoOpenFileDialog
             // 
@@ -278,9 +267,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 395);
-            this.Controls.Add(this.FotoPictureBox);
-            this.Controls.Add(this.ChangeButton);
+            this.ClientSize = new System.Drawing.Size(326, 381);
+            this.Controls.Add(this.PhotoPictureBox);
             this.Controls.Add(this.CourceLabel);
             this.Controls.Add(this.SpecialityLabel);
             this.Controls.Add(this.GroupLabel);
@@ -306,9 +294,12 @@
             this.Controls.Add(this.SurnameTextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(342, 420);
+            this.MinimumSize = new System.Drawing.Size(342, 420);
             this.Name = "StudentCard";
             this.Text = "Карточка студента";
-            ((System.ComponentModel.ISupportInitialize)(this.FotoPictureBox)).EndInit();
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.StudentCard_FormClosing);
+            ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -339,8 +330,7 @@
         private System.Windows.Forms.Label GroupLabel;
         private System.Windows.Forms.Label SpecialityLabel;
         private System.Windows.Forms.Label CourceLabel;
-        private System.Windows.Forms.Button ChangeButton;
-        private System.Windows.Forms.PictureBox FotoPictureBox;
+        private System.Windows.Forms.PictureBox PhotoPictureBox;
         private System.Windows.Forms.OpenFileDialog FotoOpenFileDialog;
     }
 }

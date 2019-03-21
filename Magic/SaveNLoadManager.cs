@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.IO;
+using System.Windows.Forms;
 
 namespace StudentCard
 {
@@ -12,7 +13,7 @@ namespace StudentCard
     {
         public void SaveData(Student student)
         {
-            var fullSavePath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
+            var fullSavePath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid.ToString() + ".json");
 
             using (var writer = new StreamWriter(fullSavePath))
             {
@@ -23,8 +24,8 @@ namespace StudentCard
 
         public void DeleteData(Student student)
         {
-            var fullPathToStudent = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid + ".json");
-            if (student.Foto)
+            var fullPathToStudent = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, student.Guid.ToString() + ".json");
+            if (student.Photo)
             {
                 var fullPathToFoto = Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid.ToString() + ".jpg");
                 File.Delete(fullPathToFoto);
@@ -35,6 +36,7 @@ namespace StudentCard
         private Student LoadData(string studentsData)
         {
             var fullDataPath = Path.Combine(Magic.Properties.Settings.Default.PathToStudentInfo, studentsData);
+
             using (var reader = new StreamReader(fullDataPath))
             {
                 var json = reader.ReadToEnd();
@@ -50,8 +52,7 @@ namespace StudentCard
             }
 
             var studentList = new List<Student>();
-            var studentFiles = Directory.GetFiles(PathToStudentInfo);
-            foreach (var student in studentFiles)
+            foreach (var student in Directory.GetFiles(PathToStudentInfo))
             {
                 var i = LoadData(Path.GetFileName(student));
                 studentList.Add(i);
@@ -72,6 +73,22 @@ namespace StudentCard
                 var json = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<Curriculum>(json); ;
             }
+        }
+
+        public void LoadFoto(Student student, PictureBox pictureBox)
+        {
+            pictureBox.ImageLocation = Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid.ToString() + ".jpg");
+        }
+
+        public void LoadDefaultPhoto(PictureBox pictureBox)
+        {
+            pictureBox.ImageLocation = Path.Combine(Magic.Properties.Settings.Default.PathToFoto, "DefaultPhoto.jpg");
+            pictureBox.Name = "Default";
+        }
+
+        public void SavePhoto(Student student, PictureBox pictureBox)
+        {
+            pictureBox.Image.Save(Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid.ToString() + ".jpg"));
         }
     }
 }

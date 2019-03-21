@@ -15,89 +15,83 @@ namespace StudentCard
 {
     public partial class StudentCard : Form
     {
-        private StudentTable currentStudentTable;
-        private List<Student> currentDataStudent;
-        private Student currentStudent;
+        private StudentTable _studentTable;
+        private List<Student> _dataStudent;
+        private Student _student;
+        private ComboBoxManager _comboBoxManager;
+        private SaveNLoadManager _manager;
 
         public StudentCard(StudentTable studentTable, List<Student> dataStudent)
         {
-            currentDataStudent = dataStudent;
-            currentStudentTable = studentTable;
+            _dataStudent = dataStudent;
+            _studentTable = studentTable;
             InitializeComponent();
-            new ComboBoxManager().LoadInfoToFacultyCombobox(FacultyComboBox);
+            _comboBoxManager = new ComboBoxManager();
+            _manager = new SaveNLoadManager();
+            _comboBoxManager.LoadInfoToFacultyCombobox(FacultyComboBox);
+            _manager.LoadDefaultPhoto(PhotoPictureBox);
         }
 
-        //загрузка данных студента в текстбоксы и комбобоксы
-        public void ChangeTextBoxes(Student student)
+        /// <summary>
+        /// загрузка данных студента в текстбоксы и комбобоксы
+        /// </summary>
+        /// <param name="student">текущий студент</param>
+        public void ChangeBoxes(Student student)
         {
-            currentStudent = student;
+            _student = student;
 
-            SurnameTextBox.Text = student.Surname;
-            NameTextBox.Text = student.Names;
-            MiddlenameTextBox.Text = student.MiddleName;
-            CityTextBox.Text = student.City;
-            AddressTextBox.Text = student.Street;
-            TelefonTextBox.Text = student.TelefonNumber.ToString();
-            EmailTextBox.Text = student.Email;
+            SurnameTextBox.Text = _student.Surname;
+            NameTextBox.Text = _student.Name;
+            MiddlenameTextBox.Text = _student.MiddleName;
+            CityTextBox.Text = _student.City;
+            AddressTextBox.Text = _student.Street;
+            TelefonTextBox.Text = _student.TelefonNumber;
+            EmailTextBox.Text = _student.Email;
 
             FacultyComboBox.ValueMember = nameof(Faculty.ID);
-            FacultyComboBox.SelectedValue = student.FacultyID;
+            FacultyComboBox.SelectedValue = _student.FacultyID;
 
             SpecialityComboBox.ValueMember = nameof(Speciality.ID);
-            SpecialityComboBox.SelectedValue = student.SpecialityID;
+            SpecialityComboBox.SelectedValue = _student.SpecialityID;
 
             CourceComboBox.ValueMember = nameof(Cource.Number);
-            CourceComboBox.SelectedValue = student.Cource;
+            CourceComboBox.SelectedValue = _student.Cource;
 
             GroupComboBox.ValueMember = nameof(Group.ID);
-            GroupComboBox.SelectedValue = student.GroupID;
-        }
+            GroupComboBox.SelectedValue = _student.GroupID;
 
-        private void FacultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            new ComboBoxManager().LoadInfoToSpecialityComboBox(SpecialityComboBox, FacultyComboBox);
-        }
-
-        private void SpecialityComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            new ComboBoxManager().LoadInfoToCourceComboBox(CourceComboBox);
-        }
-
-        private void CourceComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            new ComboBoxManager().LoadInfoToGroupComboBox(GroupComboBox, SpecialityComboBox, CourceComboBox);
-        }
-
-        //удаление файла и сохранение измененного или нового файла студента
-        private void SaveStudentCardButton_Click(object sender, EventArgs e)
-        {
-            if (currentStudent == null)
+            if (_student.Photo)
             {
-                currentStudent = new Student
-                {
-                    Guid = Guid.NewGuid()
-                };
-                currentDataStudent.Add(currentStudent);
+                _manager.LoadFoto(_student, PhotoPictureBox);
+                PhotoPictureBox.Name = _student.Guid.ToString();
             }
             else
             {
-                //new SaveNLoadManager().DeleteData(currentStudent);
-                //currentDataStudent.Remove(currentStudent);
+                _manager.LoadDefaultPhoto(PhotoPictureBox);
             }
-            SaveCurrentStudent(currentStudent);
-            new SaveNLoadManager().SaveData(currentStudent);
-            MessageBox.Show($"Данные {currentStudent.Surname} сохранены");
-            //currentDataStudent.Add(currentStudent);
-            currentStudentTable.RefreshInfo();
+        }
+
+        private void SaveStudentCardButton_Click(object sender, EventArgs e)
+        {
+            if (_student == null)
+            {
+                _student = new Student
+                {
+                    Guid = Guid.NewGuid()
+                };
+                _dataStudent.Add(_student);
+            }
+            SaveCurrentStudent(_student);
+            _manager.SaveData(_student);
+            MessageBox.Show($"Данные {_student.Surname} сохранены");
+
             Close();
         }
 
-        public List<Student> ReturnCurrentStudentList()
-        {
-            return currentDataStudent;
-        }
-
-        //сохранение данных о конкретном студенте
+        /// <summary>
+        /// сохранение данных о конкретном студенте
+        /// </summary>
+        /// <param name="student">текущий студент</param>
         private void SaveCurrentStudent(Student student)
         {
             var currentFaculty = (Faculty)FacultyComboBox.SelectedItem;
@@ -106,75 +100,80 @@ namespace StudentCard
             var currentGroup = (Group)GroupComboBox.SelectedItem;
 
             student.Surname = SurnameTextBox.Text;
-            student.Names = NameTextBox.Text;
+            student.Name = NameTextBox.Text;
             student.MiddleName = MiddlenameTextBox.Text;
             student.City = CityTextBox.Text;
             student.Street = AddressTextBox.Text;
-            student.TelefonNumber = long.Parse(TelefonTextBox.Text);
+            student.TelefonNumber = TelefonTextBox.Text;
             student.Email = EmailTextBox.Text;
             student.FacultyID = currentFaculty.ID;
             student.SpecialityID = currentSpeciality.ID;
             student.Cource = currentCource.Number;
             student.GroupID = currentGroup.ID;
-            if (FotoPictureBox.Image != null)
+            if (PhotoPictureBox.Name == student.Guid.ToString())
             {
-                student.Foto = true;
-                FotoPictureBox.Image.Save(Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid.ToString() + ".jpg"));
+                student.Photo = true;
+                _manager.SavePhoto(student, PhotoPictureBox);
             }
-        }
-
-        private void ChangeButton_Click(object sender, EventArgs e)
-        {
-            AllowChanges();
-        }
-
-        //запрет на изменение данных в карточке
-        public void LockChanges()
-        {
-            FotoPictureBox.Enabled = false;
-            SurnameTextBox.ReadOnly = true;
-            NameTextBox.ReadOnly = true;
-            MiddlenameTextBox.ReadOnly = true;
-            CityTextBox.ReadOnly = true;
-            AddressTextBox.ReadOnly = true;
-            TelefonTextBox.ReadOnly = true;
-            EmailTextBox.ReadOnly = true;
-
-            FacultyComboBox.Enabled = false;
-            SpecialityComboBox.Enabled = false;
-            CourceComboBox.Enabled = false;
-            GroupComboBox.Enabled = false;
-        }
-
-        //позволяет изменять данные в карточке
-        public void AllowChanges()
-        {
-            FotoPictureBox.Enabled = true;
-            SurnameTextBox.ReadOnly = false;
-            NameTextBox.ReadOnly = false;
-            MiddlenameTextBox.ReadOnly = false;
-            CityTextBox.ReadOnly = false;
-            AddressTextBox.ReadOnly = false;
-            TelefonTextBox.ReadOnly = false;
-            EmailTextBox.ReadOnly = false;
-
-            FacultyComboBox.Enabled = true;
-            SpecialityComboBox.Enabled = true;
-            CourceComboBox.Enabled = true;
-            GroupComboBox.Enabled = true;
-        }
-
-        public void LoadFoto(Student student)
-        {
-            FotoPictureBox.ImageLocation = Path.Combine(Magic.Properties.Settings.Default.PathToFoto, student.Guid + ".jpg");
+            else
+            {
+                student.Photo = false;
+            }
         }
 
         private void FotoPictureBox_Click(object sender, EventArgs e)
         {
+            OpenPhoto(_student);
+        }
+
+        /// <summary>
+        /// Открытие окна для поиска фото
+        /// </summary>
+        /// <param name="student">текущий студент</param>
+        private void OpenPhoto(Student student)
+        {
             if (FotoOpenFileDialog.ShowDialog() == DialogResult.Cancel)
                 return;
-            string filename = FotoOpenFileDialog.FileName;
-            FotoPictureBox.ImageLocation = filename;
+            PhotoPictureBox.ImageLocation = FotoOpenFileDialog.FileName;
+            PhotoPictureBox.Name = student.Guid.ToString();
+        }
+
+        private void FacultyComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _comboBoxManager.LoadInfoToSpecialityComboBox(SpecialityComboBox, FacultyComboBox);
+        }
+
+        private void SpecialityComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _comboBoxManager.LoadInfoToCourceComboBox(CourceComboBox);
+        }
+
+        private void CourceComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _comboBoxManager.LoadInfoToGroupComboBox(GroupComboBox, SpecialityComboBox, CourceComboBox);
+        }
+
+        private void StudentCard_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                DialogResult result = MessageBox.Show(
+                "Закрыть форму без сохранения?",
+                "Закрыть",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Information,
+                MessageBoxDefaultButton.Button1,
+                MessageBoxOptions.DefaultDesktopOnly);
+                if (result == DialogResult.Yes)
+                {
+                    e.Cancel = false;
+                }
+                else
+                {
+                    e.Cancel = true;
+                    _studentTable.RefreshInfo();
+                }
+            }
         }
     }
 }

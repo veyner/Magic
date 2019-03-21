@@ -7,62 +7,76 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace StudentCard
 {
     public partial class StudentTable : Form
     {
-        private Curriculum curriculumInfo;
-        private List<Student> dataStudent;
+        private Curriculum _curriculumInfo;
+        private List<Student> _dataStudent;
         private List<Student> searchStudentList = new List<Student>();
+        private SaveNLoadManager _manager;
         private bool search = false; //переменная для обозначения, осуществляется ли поиск
 
         public StudentTable()
         {
             InitializeComponent();
             new ComboBoxManager().LoadInfoToCourceComboBox(CourceComboBox);
-            curriculumInfo = new SaveNLoadManager().LoadCurruculumData();
-            dataStudent = new SaveNLoadManager().LoadStudentData();
-
+            _manager = new SaveNLoadManager();
+            _curriculumInfo = _manager.LoadCurruculumData();
+            _dataStudent = _manager.LoadStudentData();
+            _manager.LoadDefaultPhoto(PhotoPictureBox);
             LoadInfoToTree();
         }
 
-        private void LoadInfoToTree() // Загрузка информации в Treeview начиная с факультетов
+        /// <summary>
+        /// Загрузка информации в Treeview начиная с факультетов
+        /// </summary>
+        private void LoadInfoToTree()
         {
             TreeNode facultyNode = new TreeNode("Факультеты");
-            foreach (Faculty faculty in curriculumInfo.Faculties)
+            foreach (Faculty faculty in _curriculumInfo.Faculties)
             {
                 if (faculty.ID != 0)
                 {
                     TreeNode currentFacultyNode = new TreeNode(faculty.Name);
                     facultyNode.Nodes.Add(currentFacultyNode);
-
                     CreateSpecialityNode(currentFacultyNode, faculty); //создание treenode для каждой специальности в каждом факультете
                 }
             }
             StudentCardsTreeView.Nodes.Add(facultyNode);
         }
 
-        //Создание treenode специальности
+        /// <summary>
+        /// Создание treenode специальности
+        /// </summary>
+        /// <param name="currentFacultyNode">текущий нод факультета</param>
+        /// <param name="faculty">текущий факультет</param>
         private void CreateSpecialityNode(TreeNode currentFacultyNode, Faculty faculty)
         {
-            foreach (Speciality speciality in curriculumInfo.Specialities)
+            foreach (Speciality speciality in _curriculumInfo.Specialities)
             {
-                if (speciality.FacultyID == faculty.ID & speciality.ID != 0)
+                if (speciality.FacultyID == faculty.ID && speciality.ID != 0)
                 {
                     TreeNode currentSpecialityNode = new TreeNode(speciality.Name);
                     currentFacultyNode.Nodes.Add(currentSpecialityNode);
-                    CreateCourceNode(currentSpecialityNode, speciality);
+                    CreateCourceNode(currentSpecialityNode, speciality);//создание treenode для каждого курса в каждой специальности
                 }
             }
         }
 
-        // treenode групп для определенных специалностей и курсов
+        /// <summary>
+        /// treenode групп для определенных специалностей и курсов
+        /// </summary>
+        /// <param name="currentCourceNode">текущий нод курса</param>
+        /// <param name="speciality">текущая специальность</param>
+        /// <param name="cource">текущий курс</param>
         private void CreateGroupNode(TreeNode currentCourceNode, Speciality speciality, Cource cource)
         {
-            foreach (Group group in curriculumInfo.Groups)
+            foreach (Group group in _curriculumInfo.Groups)
             {
-                if (group.SpecialityID == speciality.ID && group.ID != 0 && group.Cource == cource.Number)
+                if (group.SpecialityID == speciality.ID && group.ID != 0 && group.Cource == cource.Number) // проверка по текущей специальности и текущему курсу
                 {
                     TreeNode currentGroupNode = new TreeNode(group.Name);
                     currentCourceNode.Nodes.Add(currentGroupNode);
@@ -71,18 +85,25 @@ namespace StudentCard
             }
         }
 
-        // treenode курсов для каждой специальности
+        /// <summary>
+        /// treenode курсов для каждой специальности
+        /// </summary>
+        /// <param name="currentSpecialityNode">текущий нод специальности</param>
+        /// <param name="speciality">текущая специальность</param>
         private void CreateCourceNode(TreeNode currentSpecialityNode, Speciality speciality)
         {
             foreach (Cource cource in CreateCourcesForTree())
             {
                 TreeNode currentCourceNode = new TreeNode(cource.Number);
                 currentSpecialityNode.Nodes.Add(currentCourceNode);
-                CreateGroupNode(currentCourceNode, speciality, cource);
+                CreateGroupNode(currentCourceNode, speciality, cource); // создание групп для каждого курса
             }
         }
 
-        //создание списка курсов для treeview
+        /// <summary>
+        /// создание списка курсов для treeview
+        /// </summary>
+        /// <returns>лист курсов</returns>
         private List<Cource> CreateCourcesForTree()
         {
             var cources = new List<Cource>();
@@ -98,13 +119,19 @@ namespace StudentCard
         }
 
         // создание treenode для каждого студента в определенной группе
+        /// <summary>
+        /// создание нода для каждого студента
+        /// </summary>
+        /// <param name="currentGroupNode">текущий нод группы</param>
+        /// <param name="group">текущая группа</param>
+        /// <param name="students">лист студентов</param>
         private void LoadStudentsToTree(TreeNode currentGroupNode, Group group, List<Student> students)
         {
             foreach (Student student in students)
             {
                 if (student.GroupID == group.ID)
                 {
-                    TreeNode currentStudent = new TreeNode(student.Surname + " " + student.Names + " " + student.MiddleName)
+                    TreeNode currentStudent = new TreeNode(student.Surname + " " + student.Name + " " + student.MiddleName)
                     {
                         Name = student.Guid.ToString()
                     };
@@ -113,26 +140,33 @@ namespace StudentCard
             }
         }
 
-        //Выбор листа студентов (полный или выбранный поиском) для загрузки в treeview
+        /// <summary>
+        /// Выбор листа студентов (полный или выбранный поиском) для загрузки в treeview
+        /// </summary>
+        /// <param name="currentGroupNode">текущий нод группы</param>
+        /// <param name="group">текущая группа</param>
+
         private void ChooseFullOrSearchList(TreeNode currentGroupNode, Group group)
         {
             if (!search)
             {
-                LoadStudentsToTree(currentGroupNode, group, dataStudent);
+                LoadStudentsToTree(currentGroupNode, group, _dataStudent); // загрузка всех студентов
             }
             else
             {
-                LoadStudentsToTree(currentGroupNode, group, searchStudentList);
+                LoadStudentsToTree(currentGroupNode, group, searchStudentList); // загрузка студентов из листа поиска
             }
         }
 
-        //Поиск студентов по выбранному курсу (если курс не выбран - отображаются все студенты по введенным критерям)
+        /// <summary>
+        /// Поиск студентов по выбранному курсу (если курс не выбран - отображаются все студенты по введенным критерям)
+        /// </summary>
         private void Search()
         {
-            foreach (Student student in dataStudent)
+            foreach (Student student in _dataStudent)
             {
                 var currentCource = (Cource)CourceComboBox.SelectedItem;
-                if (currentCource.Number == "Все")
+                if (currentCource.Number == " ")
                 {
                     AddStudentToSearchList(student);
                 }
@@ -144,25 +178,57 @@ namespace StudentCard
             }
         }
 
-        //Отбор студентов по фамилии, имени, отчеству в список для поиска
+        /// <summary>
+        /// Отбор студентов по фамилии, имени, отчеству в список для поиска
+        /// </summary>
+        /// <param name="student">текущий студент</param>
         private void AddStudentToSearchList(Student student)
         {
-            if (SurnameSearchTextBox.Text?.Length == 0 && NameSearchTextBox.Text?.Length == 0 && MidNameSearchTextBox.Text?.Length == 0)
+            var surnameSearch = SurnameSearchTextBox.Text;
+            var nameSearch = NameSearchTextBox.Text;
+            var midNameSearch = MidNameSearchTextBox.Text;
+            // условие по отбору всех студентов выбранного курса
+            if (string.IsNullOrWhiteSpace(surnameSearch) && string.IsNullOrWhiteSpace(nameSearch) && string.IsNullOrWhiteSpace(midNameSearch))
             {
                 searchStudentList.Add(student);
             }
-            if (SurnameSearchTextBox.Text == student.Surname && NameSearchTextBox.Text.Length == 0 && MidNameSearchTextBox.Text?.Length == 0)
+            //условие по отбору студентов по введенной информации в поле "Фамилия"
+            if (!string.IsNullOrWhiteSpace(surnameSearch) && string.IsNullOrWhiteSpace(nameSearch) && string.IsNullOrWhiteSpace(midNameSearch))
             {
-                searchStudentList.Add(student);
+                if (RegexSearch(surnameSearch, student.Surname))
+                {
+                    searchStudentList.Add(student);
+                }
             }
-            if (SurnameSearchTextBox.Text == student.Surname && NameSearchTextBox.Text == student.Names && MidNameSearchTextBox.Text?.Length == 0)
+            //условие по отбору студентов по введенной информации в поле "Фамилия" и "Имя"
+            if (!string.IsNullOrWhiteSpace(surnameSearch) && !string.IsNullOrWhiteSpace(nameSearch) && string.IsNullOrWhiteSpace(midNameSearch))
             {
-                searchStudentList.Add(student);
+                if (RegexSearch(surnameSearch, student.Surname) && RegexSearch(nameSearch, student.Name))
+                {
+                    searchStudentList.Add(student);
+                }
             }
-            if (SurnameSearchTextBox.Text == student.Surname && NameSearchTextBox.Text == student.Names && MidNameSearchTextBox.Text == student.MiddleName)
+            //условие по отбору студентов по введенной информации в поле "Фамилия", "Имя" и "Отчество"
+            if (!string.IsNullOrWhiteSpace(surnameSearch) && !string.IsNullOrWhiteSpace(nameSearch) && !string.IsNullOrWhiteSpace(midNameSearch))
             {
-                searchStudentList.Add(student);
+                if (RegexSearch(surnameSearch, student.Surname) && RegexSearch(nameSearch, student.Name) && RegexSearch(midNameSearch, student.MiddleName))
+                {
+                    searchStudentList.Add(student);
+                }
             }
+        }
+
+        /// <summary>
+        /// регулярное выражение для отбора студентов
+        /// </summary>
+        /// <param name="pattern">шаблон выражения</param>
+        /// <param name="text">место поиска по шаблону (фамилия, имя или отчество)</param>
+        /// <returns>если найдено совпадение - truе</returns>
+        private bool RegexSearch(string pattern, string text)
+        {
+            Regex regex = new Regex(pattern, RegexOptions.IgnoreCase);
+            Match m = regex.Match(text);
+            return m.Success;
         }
 
         private void SearchButton_Click(object sender, EventArgs e)
@@ -186,52 +252,133 @@ namespace StudentCard
             }
             SurnameSearchTextBox.Text = "";
             NameSearchTextBox.Text = "";
-            SurnameSearchTextBox.Text = "";
+            MidNameSearchTextBox.Text = "";
             CourceComboBox.ResetText();
             RefreshInfo();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            new StudentCard(this, dataStudent).ShowDialog();
+            new StudentCard(this, _dataStudent).ShowDialog();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            var chosenStudent = StudentCardsTreeView.SelectedNode;
-            var currentStudent = dataStudent.Find(student => student.Guid.ToString() == chosenStudent.Name);
-            new SaveNLoadManager().DeleteData(currentStudent);
-            MessageBox.Show($"Данные {currentStudent.Surname} удалены");
-            RefreshInfo();
+            if (StudentCardsTreeView.SelectedNode != null && StudentCardsTreeView.SelectedNode.Name != "")
+            {
+                var currentStudent = SearchStudentInStudentList();
+                _manager.DeleteData(currentStudent);
+                MessageBox.Show($"Данные {currentStudent.Surname} удалены");
+                DeleteTextBoxInfo();
+                RefreshInfo();
+            }
         }
 
         private void StudentCardsTreeView_DoubleClick(object sender, EventArgs e)
         {
-            var studentData = new SaveNLoadManager().LoadStudentData();
-            var currentStudent = StudentCardsTreeView.SelectedNode;
-            StudentCard currentStudentCard;
-            foreach (Student student in studentData)
+            if (StudentCardsTreeView.SelectedNode.Name != "")
             {
-                if (student.Guid.ToString() == currentStudent.Name)
-                {
-                    currentStudentCard = new StudentCard(this, dataStudent);
-                    currentStudentCard.ChangeTextBoxes(student);
-                    currentStudentCard.LoadFoto(student);
-                    currentStudentCard.LockChanges();
-                    currentStudentCard.ShowDialog();
-                    RefreshInfo();
-                }
+                LoadClickedStudentInfo();
             }
         }
 
-        //функция обновления данных в treeview
+        /// <summary>
+        /// обновление данных в treeview
+        /// </summary>
         public void RefreshInfo()
         {
             StudentCardsTreeView.Nodes.Clear();
-            dataStudent = new SaveNLoadManager().LoadStudentData();
+            _dataStudent = _manager.LoadStudentData();
             LoadInfoToTree();
             StudentCardsTreeView.Refresh();
             StudentCardsTreeView.ExpandAll();
+        }
+
+        /// <summary>
+        /// Очистка данных в текстбоксах
+        /// </summary>
+        private void DeleteTextBoxInfo()
+        {
+            SurnameTextBox.Text = "";
+            NameTextBox.Text = "";
+            MiddlenameTextBox.Text = "";
+            CityTextBox.Text = "";
+            AddressTextBox.Text = "";
+            TelefonTextBox.Text = "";
+            EmailTextBox.Text = "";
+        }
+
+        /// <summary>
+        /// Загрузка информации выбранного студента для просмотра
+        /// </summary>
+        private void LoadClickedStudentInfo()
+        {
+            var currentStudent = SearchStudentInStudentList();
+
+            SurnameTextBox.Text = currentStudent.Surname;
+            NameTextBox.Text = currentStudent.Name;
+            MiddlenameTextBox.Text = currentStudent.MiddleName;
+            CityTextBox.Text = currentStudent.City;
+            AddressTextBox.Text = currentStudent.Street;
+            TelefonTextBox.Text = currentStudent.TelefonNumber;
+            EmailTextBox.Text = currentStudent.Email;
+            //если фото выбрано загружается фото
+            if (currentStudent.Photo)
+            {
+                _manager.LoadFoto(currentStudent, PhotoPictureBox);
+            }
+            //если фото не выбрано загружается дефолтная картинка
+            else
+            {
+                _manager.LoadDefaultPhoto(PhotoPictureBox);
+            }
+        }
+
+        /// <summary>
+        /// поиск студента в списке
+        /// </summary>
+        /// <returns>найденный студент</returns>
+        private Student SearchStudentInStudentList()
+        {
+            var chosenStudent = StudentCardsTreeView.SelectedNode;
+            return _dataStudent.Find(student => student.Guid.ToString() == chosenStudent.Name);
+        }
+
+        private void ChangeInfoButton_Click(object sender, EventArgs e)
+        {
+            if (StudentCardsTreeView.SelectedNode != null && StudentCardsTreeView.SelectedNode.Name != "")
+            {
+                var currentStudent = SearchStudentInStudentList();
+                StudentCard currentStudentCard = new StudentCard(this, _dataStudent);
+                currentStudentCard.ChangeBoxes(currentStudent);
+                currentStudentCard.ShowDialog();
+                DeleteTextBoxInfo();
+                RefreshInfo();
+            }
+        }
+
+        private void SurnameSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(SurnameSearchTextBox.Text))
+            {
+                NameSearchTextBox.Enabled = true;
+            }
+            else
+            {
+                NameSearchTextBox.Enabled = false;
+            }
+        }
+
+        private void NameSearchTextBox_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(NameSearchTextBox.Text))
+            {
+                MidNameSearchTextBox.Enabled = true;
+            }
+            else
+            {
+                MidNameSearchTextBox.Enabled = false;
+            }
         }
     }
 }

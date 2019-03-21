@@ -57,7 +57,7 @@ namespace StudentCard
             var cources = new List<Cource>();
             var emptyCource = new Cource
             {
-                Number = "Все"
+                Number = " "
             };
             cources.Add(emptyCource);
             for (var i = 0; i < 5; i++)
@@ -81,7 +81,7 @@ namespace StudentCard
             {
                 groupList[0]
             };
-            if (currentCource.Number != "Все")
+            if (currentCource.Number != " ")
             {
                 foreach (Group group in groupList)
                 {
