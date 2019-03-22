@@ -11,6 +11,6 @@ namespace StudentCard
         public int ID { get; set; }
         public string Name { get; set; }
         public int SpecialityID { get; set; }
-        public string Cource { get; set; }
+        public int CourceID { get; set; }
     }
 }

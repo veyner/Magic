@@ -47,28 +47,11 @@ namespace StudentCard
 
         public void LoadInfoToCourceComboBox(ComboBox courceComboBox)
         {
-            var cources = CreateCourceList();
-            courceComboBox.DataSource = cources;
-            courceComboBox.DisplayMember = nameof(Cource.Number);
-        }
-
-        public List<Cource> CreateCourceList()
-        {
-            var cources = new List<Cource>();
-            var emptyCource = new Cource
+            if (courceComboBox.Name == "CourceComboBox")
             {
-                Number = " "
-            };
-            cources.Add(emptyCource);
-            for (var i = 0; i < 5; i++)
-            {
-                var cource = new Cource
-                {
-                    Number = (i + 1).ToString()
-                };
-                cources.Add(cource);
+                courceComboBox.DataSource = curriculumInfo.Cources;
+                courceComboBox.DisplayMember = nameof(Cource.Number);
             }
-            return cources;
         }
 
         public void LoadInfoToGroupComboBox(ComboBox groupComboBox, ComboBox specialityComboBox, ComboBox courceComboBox)
@@ -81,11 +64,11 @@ namespace StudentCard
             {
                 groupList[0]
             };
-            if (currentCource.Number != " ")
+            if (currentCource.ID != 0)
             {
                 foreach (Group group in groupList)
                 {
-                    if (group.SpecialityID == currentSpeciality.ID & group.Cource == currentCource.Number)
+                    if (group.SpecialityID == currentSpeciality.ID && group.CourceID == currentCource.ID)
                     {
                         groupsForCurrentSpeciality.Add(group);
                     }

@@ -39,7 +39,7 @@
             this.MidNameSearchLabel = new System.Windows.Forms.Label();
             this.DeleteSearchButton = new System.Windows.Forms.Button();
             this.CourceLabel = new System.Windows.Forms.Label();
-            this.CourceComboBox = new System.Windows.Forms.ComboBox();
+            this.CourceSearchComboBox = new System.Windows.Forms.ComboBox();
             this.AddButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.PhotoPictureBox = new System.Windows.Forms.PictureBox();
@@ -58,6 +58,7 @@
             this.SurnameLabel = new System.Windows.Forms.Label();
             this.SurnameTextBox = new System.Windows.Forms.TextBox();
             this.ChangeInfoButton = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -177,14 +178,14 @@
             this.CourceLabel.TabIndex = 46;
             this.CourceLabel.Text = "Курс";
             // 
-            // CourceComboBox
+            // CourceSearchComboBox
             // 
-            this.CourceComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.CourceComboBox.FormattingEnabled = true;
-            this.CourceComboBox.Location = new System.Drawing.Point(8, 251);
-            this.CourceComboBox.Name = "CourceComboBox";
-            this.CourceComboBox.Size = new System.Drawing.Size(121, 32);
-            this.CourceComboBox.TabIndex = 45;
+            this.CourceSearchComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.CourceSearchComboBox.FormattingEnabled = true;
+            this.CourceSearchComboBox.Location = new System.Drawing.Point(8, 251);
+            this.CourceSearchComboBox.Name = "CourceSearchComboBox";
+            this.CourceSearchComboBox.Size = new System.Drawing.Size(121, 32);
+            this.CourceSearchComboBox.TabIndex = 45;
             // 
             // AddButton
             // 
@@ -392,11 +393,23 @@
             this.ChangeInfoButton.UseVisualStyleBackColor = true;
             this.ChangeInfoButton.Click += new System.EventHandler(this.ChangeInfoButton_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(843, 34);
+            this.label1.Margin = new System.Windows.Forms.Padding(0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(361, 37);
+            this.label1.TabIndex = 77;
+            this.label1.Text = "Информация о студенте";
+            // 
             // StudentTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1394, 661);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.ChangeInfoButton);
             this.Controls.Add(this.PhotoPictureBox);
             this.Controls.Add(this.TelefonNumberLabel);
@@ -416,7 +429,7 @@
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CourceLabel);
-            this.Controls.Add(this.CourceComboBox);
+            this.Controls.Add(this.CourceSearchComboBox);
             this.Controls.Add(this.DeleteSearchButton);
             this.Controls.Add(this.MidNameSearchLabel);
             this.Controls.Add(this.NameSearchLabel);
@@ -448,7 +461,7 @@
         private System.Windows.Forms.Label MidNameSearchLabel;
         private System.Windows.Forms.Button DeleteSearchButton;
         private System.Windows.Forms.Label CourceLabel;
-        private System.Windows.Forms.ComboBox CourceComboBox;
+        private System.Windows.Forms.ComboBox CourceSearchComboBox;
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.PictureBox PhotoPictureBox;
@@ -467,5 +480,6 @@
         private System.Windows.Forms.Label SurnameLabel;
         private System.Windows.Forms.TextBox SurnameTextBox;
         private System.Windows.Forms.Button ChangeInfoButton;
+        private System.Windows.Forms.Label label1;
     }
 }

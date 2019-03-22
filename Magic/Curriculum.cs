@@ -13,6 +13,7 @@ namespace StudentCard
         public List<Faculty> Faculties { get; set; }
         public List<Speciality> Specialities { get; set; }
         public List<Group> Groups { get; set; }
+        public List<Cource> Cources { get; set; }
 
         /* public void SaveCurriculumData()
          {

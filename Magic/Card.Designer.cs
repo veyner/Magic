@@ -62,6 +62,7 @@
             this.SurnameTextBox.Name = "SurnameTextBox";
             this.SurnameTextBox.Size = new System.Drawing.Size(169, 20);
             this.SurnameTextBox.TabIndex = 0;
+            this.SurnameTextBox.TextChanged += new System.EventHandler(this.SurnameTextBox_TextChanged);
             // 
             // SaveStudentCardButton
             // 
@@ -88,6 +89,7 @@
             this.NameTextBox.Name = "NameTextBox";
             this.NameTextBox.Size = new System.Drawing.Size(169, 20);
             this.NameTextBox.TabIndex = 4;
+            this.NameTextBox.TextChanged += new System.EventHandler(this.NameTextBox_TextChanged);
             // 
             // NameLabel
             // 
@@ -131,6 +133,7 @@
             this.MiddlenameTextBox.Name = "MiddlenameTextBox";
             this.MiddlenameTextBox.Size = new System.Drawing.Size(169, 20);
             this.MiddlenameTextBox.TabIndex = 10;
+            this.MiddlenameTextBox.TextChanged += new System.EventHandler(this.MiddlenameTextBox_TextChanged);
             // 
             // CityTextBox
             // 
@@ -138,6 +141,7 @@
             this.CityTextBox.Name = "CityTextBox";
             this.CityTextBox.Size = new System.Drawing.Size(169, 20);
             this.CityTextBox.TabIndex = 11;
+            this.CityTextBox.TextChanged += new System.EventHandler(this.CityTextBox_TextChanged);
             // 
             // AddressTextBox
             // 
@@ -145,6 +149,7 @@
             this.AddressTextBox.Name = "AddressTextBox";
             this.AddressTextBox.Size = new System.Drawing.Size(169, 20);
             this.AddressTextBox.TabIndex = 12;
+            this.AddressTextBox.TextChanged += new System.EventHandler(this.AddressTextBox_TextChanged);
             // 
             // CityLabel
             // 
@@ -221,6 +226,7 @@
             this.GroupComboBox.Name = "GroupComboBox";
             this.GroupComboBox.Size = new System.Drawing.Size(121, 21);
             this.GroupComboBox.TabIndex = 21;
+            this.GroupComboBox.SelectedIndexChanged += new System.EventHandler(this.GroupComboBox_SelectedIndexChanged);
             // 
             // GroupLabel
             // 

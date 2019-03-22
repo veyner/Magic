@@ -18,13 +18,15 @@ namespace StudentCard
         private List<Student> searchStudentList = new List<Student>();
         private SaveNLoadManager _manager;
         private bool search = false; //переменная для обозначения, осуществляется ли поиск
+        private List<Cource> courceList = new List<Cource>();
 
         public StudentTable()
         {
             InitializeComponent();
-            new ComboBoxManager().LoadInfoToCourceComboBox(CourceComboBox);
+            new ComboBoxManager().LoadInfoToCourceComboBox(CourceSearchComboBox);
             _manager = new SaveNLoadManager();
             _curriculumInfo = _manager.LoadCurruculumData();
+            courceList = CreateCourceListForTreeView();
             _dataStudent = _manager.LoadStudentData();
             _manager.LoadDefaultPhoto(PhotoPictureBox);
             LoadInfoToTree();
@@ -76,7 +78,7 @@ namespace StudentCard
         {
             foreach (Group group in _curriculumInfo.Groups)
             {
-                if (group.SpecialityID == speciality.ID && group.ID != 0 && group.Cource == cource.Number) // проверка по текущей специальности и текущему курсу
+                if (group.SpecialityID == speciality.ID && group.ID != 0 && group.CourceID == cource.ID) // проверка по текущей специальности и текущему курсу
                 {
                     TreeNode currentGroupNode = new TreeNode(group.Name);
                     currentCourceNode.Nodes.Add(currentGroupNode);
@@ -92,7 +94,7 @@ namespace StudentCard
         /// <param name="speciality">текущая специальность</param>
         private void CreateCourceNode(TreeNode currentSpecialityNode, Speciality speciality)
         {
-            foreach (Cource cource in CreateCourcesForTree())
+            foreach (Cource cource in courceList)
             {
                 TreeNode currentCourceNode = new TreeNode(cource.Number);
                 currentSpecialityNode.Nodes.Add(currentCourceNode);
@@ -101,21 +103,14 @@ namespace StudentCard
         }
 
         /// <summary>
-        /// создание списка курсов для treeview
+        /// Убирает пустой курс
         /// </summary>
-        /// <returns>лист курсов</returns>
-        private List<Cource> CreateCourcesForTree()
+        /// <returns>список курсов для загрузки в treeview</returns>
+        private List<Cource> CreateCourceListForTreeView()
         {
-            var cources = new List<Cource>();
-            for (var i = 0; i < 5; i++)
-            {
-                var cource = new Cource
-                {
-                    Number = (i + 1).ToString()
-                };
-                cources.Add(cource);
-            }
-            return cources;
+            var courceList = _curriculumInfo.Cources;
+            courceList.Remove(courceList[0]);
+            return courceList;
         }
 
         // создание treenode для каждого студента в определенной группе
@@ -165,13 +160,13 @@ namespace StudentCard
         {
             foreach (Student student in _dataStudent)
             {
-                var currentCource = (Cource)CourceComboBox.SelectedItem;
+                var currentCource = (Cource)CourceSearchComboBox.SelectedItem;
                 if (currentCource.Number == " ")
                 {
                     AddStudentToSearchList(student);
                 }
                 else
-                if (student.Cource == currentCource.Number)
+                if (student.CourceID == currentCource.ID)
                 {
                     AddStudentToSearchList(student);
                 }
@@ -253,13 +248,14 @@ namespace StudentCard
             SurnameSearchTextBox.Text = "";
             NameSearchTextBox.Text = "";
             MidNameSearchTextBox.Text = "";
-            CourceComboBox.ResetText();
+            CourceSearchComboBox.ResetText();
             RefreshInfo();
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
             new StudentCard(this, _dataStudent).ShowDialog();
+            RefreshInfo();
         }
 
         private void DeleteButton_Click(object sender, EventArgs e)
@@ -285,7 +281,7 @@ namespace StudentCard
         /// <summary>
         /// обновление данных в treeview
         /// </summary>
-        public void RefreshInfo()
+        private void RefreshInfo()
         {
             StudentCardsTreeView.Nodes.Clear();
             _dataStudent = _manager.LoadStudentData();
@@ -306,6 +302,7 @@ namespace StudentCard
             AddressTextBox.Text = "";
             TelefonTextBox.Text = "";
             EmailTextBox.Text = "";
+            _manager.LoadDefaultPhoto(PhotoPictureBox);
         }
 
         /// <summary>
