@@ -49,13 +49,13 @@ namespace Magic.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Foto")]
-        public string PathToFoto {
+        [global::System.Configuration.DefaultSettingValueAttribute("Photo")]
+        public string PathToPhoto {
             get {
-                return ((string)(this["PathToFoto"]));
+                return ((string)(this["PathToPhoto"]));
             }
             set {
-                this["PathToFoto"] = value;
+                this["PathToPhoto"] = value;
             }
         }
     }

@@ -8,8 +8,8 @@
     <Setting Name="PathToStudentInfo" Type="System.String" Scope="User">
       <Value Profile="(Default)">Students</Value>
     </Setting>
-    <Setting Name="PathToFoto" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Foto</Value>
+    <Setting Name="PathToPhoto" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Photo</Value>
     </Setting>
   </Settings>
 </SettingsFile>
