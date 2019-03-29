@@ -47,11 +47,8 @@ namespace StudentCard
 
         public void LoadInfoToCourceComboBox(ComboBox courceComboBox)
         {
-            if (courceComboBox.Name == "CourceComboBox")
-            {
-                courceComboBox.DataSource = curriculumInfo.Cources;
-                courceComboBox.DisplayMember = nameof(Cource.Number);
-            }
+            courceComboBox.DataSource = curriculumInfo.Cources;
+            courceComboBox.DisplayMember = nameof(Cource.Number);
         }
 
         public void LoadInfoToGroupComboBox(ComboBox groupComboBox, ComboBox specialityComboBox, ComboBox courceComboBox)

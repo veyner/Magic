@@ -19,6 +19,7 @@ namespace StudentCard
         private SaveNLoadManager _manager;
         private bool search = false; //переменная для обозначения, осуществляется ли поиск
         private List<Cource> courceList = new List<Cource>();
+        private TreeNode _currentNode;
 
         public StudentTable()
         {
@@ -30,6 +31,7 @@ namespace StudentCard
             _dataStudent = _manager.LoadStudentData();
             _manager.LoadDefaultPhoto(PhotoPictureBox);
             LoadInfoToTree();
+            StudentCardsTreeView.HideSelection = false;
         }
 
         /// <summary>
@@ -161,7 +163,7 @@ namespace StudentCard
             foreach (Student student in _dataStudent)
             {
                 var currentCource = (Cource)CourceSearchComboBox.SelectedItem;
-                if (currentCource.Number == " ")
+                if (currentCource.ID == 0)
                 {
                     AddStudentToSearchList(student);
                 }
@@ -234,6 +236,7 @@ namespace StudentCard
             }
             search = true;
             Search();
+            LoadSearchStudents();
             RefreshInfo();
             StudentCardsTreeView.ExpandAll();
         }
@@ -288,6 +291,7 @@ namespace StudentCard
             LoadInfoToTree();
             StudentCardsTreeView.Refresh();
             StudentCardsTreeView.ExpandAll();
+            StudentCardsTreeView.Nodes[0]?.EnsureVisible();
         }
 
         /// <summary>
@@ -338,6 +342,7 @@ namespace StudentCard
         private Student SearchStudentInStudentList()
         {
             var chosenStudent = StudentCardsTreeView.SelectedNode;
+            _currentNode = chosenStudent;
             return _dataStudent.Find(student => student.Guid.ToString() == chosenStudent.Name);
         }
 
@@ -376,6 +381,24 @@ namespace StudentCard
             {
                 MidNameSearchTextBox.Enabled = false;
             }
+        }
+
+        private void LoadSearchStudents()
+        {
+            foreach (Student student in searchStudentList)
+            {
+                var displayInfo = student.Surname + " " + student.Name + " " + student.MiddleName;
+                SearchStudentsListBox.Items.Add(displayInfo);
+            }
+        }
+
+        private void SearchStudentsListBox_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            var selectedStudent = searchStudentList[SearchStudentsListBox.SelectedIndex];
+            var searchNode = StudentCardsTreeView.Nodes.Find(selectedStudent.Guid.ToString(), true);
+            StudentCardsTreeView.SelectedNode = searchNode[0];
+
+            searchNode[0]?.EnsureVisible();
         }
     }
 }

@@ -59,6 +59,7 @@
             this.SurnameTextBox = new System.Windows.Forms.TextBox();
             this.ChangeInfoButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.SearchStudentsListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.PhotoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -395,6 +396,7 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.Location = new System.Drawing.Point(843, 34);
@@ -404,11 +406,21 @@
             this.label1.TabIndex = 77;
             this.label1.Text = "Информация о студенте";
             // 
+            // SearchStudentsListBox
+            // 
+            this.SearchStudentsListBox.FormattingEnabled = true;
+            this.SearchStudentsListBox.Location = new System.Drawing.Point(8, 325);
+            this.SearchStudentsListBox.Name = "SearchStudentsListBox";
+            this.SearchStudentsListBox.Size = new System.Drawing.Size(291, 316);
+            this.SearchStudentsListBox.TabIndex = 78;
+            this.SearchStudentsListBox.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.SearchStudentsListBox_MouseDoubleClick);
+            // 
             // StudentTable
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1394, 661);
+            this.Controls.Add(this.SearchStudentsListBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.ChangeInfoButton);
             this.Controls.Add(this.PhotoPictureBox);
@@ -481,5 +493,6 @@
         private System.Windows.Forms.TextBox SurnameTextBox;
         private System.Windows.Forms.Button ChangeInfoButton;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ListBox SearchStudentsListBox;
     }
 }
